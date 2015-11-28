@@ -43,7 +43,12 @@ var ambulance = mongoose.Schema({
 })
 
 var complaint = mongoose.Schema({
-	
+	animalId  : { type: String, required: true, trim: true, index: { unique: true } },
+	registerBy: { type: String, required: true, trim: true  },
+	registerEmail: { type: String, required: true, trim: true },
+	registerPhone: { type: String, required: true, trim: true, index: { unique: true } },
+	complaintStatus: { type: String, required: true, trim: true},
+	Comments: String
 })
 module.exports = {
 	Animal : mongoose.model('Animal', animalSchema),
