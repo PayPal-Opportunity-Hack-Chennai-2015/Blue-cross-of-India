@@ -37,7 +37,7 @@ var allowCrossDomain = function(req, res, next) {
 
 app.use(allowCrossDomain);
 
-var route = require('./url')(express, app, passport);
+var route = require('./url')(express, app);
 
 exports.startServer = function() {
 	app.listen(app.get('port'), function(){

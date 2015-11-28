@@ -8,6 +8,7 @@ var config = "55884e61e8cfdf0cba904102";
 var jwt    = require('jsonwebtoken');
 
 exports.isAuthenticated = function(req,res,next) {
+	
 	var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
 	if(!token) {
@@ -16,7 +17,7 @@ exports.isAuthenticated = function(req,res,next) {
 	}
 	else {
 
-		jwt.verify(token, config.key, function(err, data) {
+		jwt.verify(token, config, function(err, data) {
 		    if(err) {
 			  	res.status(401);
 			  	res.json({ "error": "Invalid token"});
@@ -28,8 +29,6 @@ exports.isAuthenticated = function(req,res,next) {
 						if(reply) {
 							var data = JSON.parse(reply)
 							req.user = data.user;
-							req.cart = data.cart;
-							req.deal = data.deal;
 							req.token = token;
 							next();
 						}
@@ -50,11 +49,11 @@ exports.isAuthenticated = function(req,res,next) {
 
 exports.signIn = function(req,res) {
 	var token_expires = Date.now() + 2630000000; // Token validity is one month
-	var token = jwt.sign({ expires: token_expires }, config.key);
+	var token = jwt.sign({ expires: token_expires }, config);
 
 	// Once the token has been generated, put it in redis storage
 	if(req.user) {
-		var data = { cart: [], user: req.user, deal: []  }
+		var data = { user: req.user }
 		redis.set(token, JSON.stringify(data))
 		// Return the token to the client
 		res.json({ "token": token })
@@ -68,9 +67,7 @@ exports.signIn = function(req,res) {
 exports.updateData = function(req) {
 	// Update the new data with the redis data
 	var data = {
-		user : req.user,
-		cart : req.cart,
-		deal : req.deal
+		user : req.user
 	}
 
 	var token = req.token;
