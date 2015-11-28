@@ -3,6 +3,7 @@
  */
 package org.bluecross.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.bluecross.persistence.data.Volunteer;
@@ -26,6 +27,10 @@ public class VolunteerService {
 
 	public String save(Volunteer volunteer) {
 		return String.valueOf(volunteerRepository.save(volunteer).getUserId());
+	}
+
+	public List<Volunteer> getByStatus(String status) {
+		return volunteerRepository.findByStatus(status);
 	}
 
 
