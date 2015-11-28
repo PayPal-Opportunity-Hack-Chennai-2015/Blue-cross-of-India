@@ -2,6 +2,8 @@ var session     = require("./lib/session-handler");
 var user        = require("./routes/userController");
 var complaint   = require("./routes/caseController");
 var animal      = require("./routes/animalController.js");
+var ambulance   = require("./routes/ambulanceController.js");
+
 
 var path        = require('path');
 var multer      = require('multer');
@@ -33,7 +35,7 @@ module.exports = function(express, app) {
 	app.use('/', indexRouter);
 
 	// =============================================
-	// ========== USER ROUTER =====================
+	// ========== USER ROUTER ======================
 	// =============================================
 
 	var userRouter = express.Router();
@@ -44,7 +46,7 @@ module.exports = function(express, app) {
 	app.use('/user', userRouter);
 
 	// =============================================
-	// ========== COMPLAINT ROUTER =====================
+	// ========== COMPLAINT ROUTER =================
 	// =============================================
 
 	var caseRouter = express.Router();
@@ -53,12 +55,26 @@ module.exports = function(express, app) {
 	app.use('/complaint', caseRouter);
 
 	// =============================================
-	// ========== ANIMAL ROUTER =====================
+	// ========== ANIMAL ROUTER ====================
 	// =============================================
 
 	var AnimalRouter = express.Router();
 	AnimalRouter.get('/', animal.getAnimals);
 
 	app.use('/animal', AnimalRouter);
+
+	// =============================================
+	// ========== AMBULANCE ROUTER =================
+	// =============================================
+
+	var AmbulanceRouter = express.Router();
+	
+	AmbulanceRouter.post('/createAmbulance', session.isAuthenticated, ambulance.createAmbulance);
+	AmbulanceRouter.post('/updateAmbulance', session.isAuthenticated, ambulance.updateAmbulance);
+	AmbulanceRouter.post('/deleteAmbulance', session.isAuthenticated, ambulance.deleteAmbulance);
+	AmbulanceRouter.get('/getAmbulance',session.isAuthenticated, ambulance.getAmbulance);
+	AmbulanceRouter.get('/getAllAmbulance',session.isAuthenticated, ambulance.getAllAmbulance);
+	
+	app.use('/ambulance',AmbulanceRouter);
 }
 
