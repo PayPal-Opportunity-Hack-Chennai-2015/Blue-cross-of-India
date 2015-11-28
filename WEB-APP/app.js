@@ -10,8 +10,8 @@ var bodyParser     = require('body-parser');
 app.set('port', process.env.PORT || 3000);
 app.set('json spaces', 2);
 
-//All static contents are stored inside the public directory
-app.use(express.static(path.join(__dirname, 'public')));
+//All static contents are stored inside the static directory
+app.use(express.static(path.join(__dirname, 'static')));
 
 app.use(bodyParser.urlencoded({
   extended: true
