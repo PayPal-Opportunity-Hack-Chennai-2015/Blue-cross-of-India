@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>VOLUNTEER APPLICATION</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">   
+    <link href="css/mystyles.css" rel="stylesheet">
+    <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
+    <link href="css/half-slider.css" rel="stylesheet">
+    <link href="css/datepicker.css" rel="stylesheet">
+    <link href="css/fullcalendar.min.css" rel="stylesheet">
+    
+    
+   
+</head>
+    
+<body>
+    <!-- Half Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');');"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 1</h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 2</h2>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the third background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+                <div class="carousel-caption">
+                    <h2>Caption 3</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <form id="regForm" data-toggle="validator" class="form-horizontal" role="form">
+                <div class="form-group" align="center">
+                    <h3>Volunteer Registration Form</h3>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-2">First Name:</label>
+                    <div class="input-group col-xs-6 col-sm-4">
+                        <span class="input-group-addon glyphicon glyphicon-user"></span>
+                        <input type="text" name="first_name" class="form-control" placeholder="First Name" data-error="Please enter First name" required/>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    
+                    <label class="control-label col-sm-2">Last Name:</label>
+                    <div class="input-group col-xs-6 col-sm-4">
+                        <span class="input-group-addon glyphicon glyphicon-user"></span>
+                        <input type="text" name="last_name" class="form-control" placeholder="Last Name" required/>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+                 <div class="form-group">   
+                    <label class="control-label col-xs-6 col-sm-2">Gender:</label>
+                    <div class="col-xs-6 col-sm-2">
+                        <label class="radio-inline">
+                                <input type="radio" name="gender" id="inlineRadio1" value="Male">Male
+                            </label>
+                             <label class="radio-inline">
+                                <input type="radio" name="gender" id="inlineRadio1" value="Female">Female
+                            </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-2">Address:</label>
+                    <div class="has-feedback col-xs-6 col-sm-10">
+                        <span class="glyphicon glyphicon-home form-control-feedback"></span>
+                        <input type="text" name="" class="form-control" placeholder="Address"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-2">City:</label>
+                    <div class="has-feedback col-xs-6 col-sm-4">
+                       <input type="text" name="city" class="form-control" value="CHENNAI" disabled/>
+                    </div>
+                
+                    <label class="control-label col-xs-6 col-sm-2">Country:</label>
+                    <div class="has-feedback col-xs-6 col-sm-4">
+                         <input type="text" name="country" class="form-control" value="INDIA" disabled/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-2">Zip Code:</label>
+                    <div class="has-feedback col-xs-6 col-sm-4">
+                        <input type="text" name="phone" class="form-control" placeholder="Pin Code"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-2">Mobile Phone:</label>
+                    <div class="has-feedback col-xs-6 col-sm-4">
+                        <input type="text" name="phone" class="form-control" placeholder="Mobile No."/>
+                        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                    </div>
+                
+                    <label class="control-label col-xs-6 col-sm-2">Phone:</label>
+                    <div class="has-feedback col-xs-6 col-sm-4">
+                        <input type="text" name="" class="form-control" placeholder="Landline"/>
+                        <span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-2">E-Mail:</label>
+                    <div class="has-feedback col-xs-6 col-sm-4">
+                        <input type="email" name="email" class="form-control" placeholder="Email"/>
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    </div>
+                
+                    <label class="control-label col-xs-6 col-sm-2">DOB:</label>
+                    <div class="has-feedback date col-xs-6 col-sm-4" id="datePicker">
+                        <input type="text" name="dob" class="date-input form-control" placeholder="Date of Birth"/>
+                        <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    </div>
+
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-2">EMERGENCY Contact & Relationship:</label>
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="text" name="" class="form-control"/>
+                    </div>
+                
+                    <label class="control-label col-xs-6 col-sm-2">Emergency Phone:</label>
+                    <div class="has-feedback col-xs-6 col-sm-4">
+                        <input type="text" name="" class="form-control"/>
+                        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-5">Why are you interested in becoming a volunteer at our Centre?:</label>
+                    <div class="col-xs-6 col-sm-7">
+                        <textarea name="" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-5">Describe any previous experience working with animals:</label>
+                    <div class="col-xs-6 col-sm-7">
+                         <textarea name="" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-5">Please list the days and times that you are most likely to volunteer:</label>
+                    <div class="col-xs-6 col-sm-7">
+                      
+                        
+                        
+                            <div class="btn-group">
+      <a class="btn dropdown-toggle btn-select" data-toggle="dropdown" href="#">Select a Country <span class="caret"></span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#">Item I</a></li>
+        <li><a href="#">Item II</a></li>
+        <li><a href="#">Item III</a></li>
+        <li class="divider"></li>
+        <li><a href="#">Other</a></li>
+      </ul>
+    </div>
+                        </div>
+                    </div>
+                
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-5">List present and previous volunteer jobs:</label>
+                    <div class="col-xs-6 col-sm-7">
+                        <textarea name="" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-2">May we call you at work?</label>
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="text" name="" class="form-control"/>
+                    </div>
+                
+                    <label class="control-label col-xs-6 col-sm-2">Work Number:</label>
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="text" name="" class="form-control"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-5">Educational experience (if currently in school, include name of school, grade and course of study):</label>
+                    <div class="col-xs-6 col-sm-7">
+                        <textarea name="" class="form-control" rows="4"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-5">How did you come to know about volunteering at BCI?</label>
+                    <div class="col-xs-6 col-sm-7">
+                        <textarea name="" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-5">List additional information that may be useful (i.e., special skills, training, interests, hobbies):</label>
+                    <div class="col-xs-6 col-sm-7">
+                        <textarea name="" class="form-control" rows="2"></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="has feedback col-xs-6 col-sm-offset-2 col-sm-5">
+                        <button type="submit" class="btn btn-warning">Submit
+                            <span class="glyphicon glyphicon-send form-control-feedback"></span></button>
+                    </div>
+                </div>          
+                
+               
+            </form>
+        </div>
+        </div>
+    </div>
+    <script src="js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+     <script src="js/bootstrapValidator.js"></script>
+    
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/fullcalendar.min.js"></script>
+    <script src="js/index.js"></script>
+     <script type="text/javascript">
+        
+        $(".date-input").datepicker({
+});
+         $('#calendar').fullCalendar({
+  buttonText : {
+      prev : '<i class="glyphicon glyphicon-triangle-left"></i>',
+      next : '<i class="glyphicon glyphicon-triangle-right"></i>'
+  }
+});
+        
+        $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    });
+    </script>
+
+</body>
+</html>
