@@ -23,7 +23,7 @@ public class Volunteer {
 	@Id
 	@Column(name = "USER_ID")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="VOLUNTEER_SEQ")
-	private int userId;
+	private Long userId;
 
 	@Column(name = "STATUS")
 	private String status;
@@ -100,15 +100,14 @@ public class Volunteer {
 	/**
 	 * @return the userId
 	 */
-	public int getUserId() {
+	public Long getUserId() {
 		return userId;
 	}
 
 	/**
-	 * @param userId
-	 *            the userId to set
+	 * @param userId the userId to set
 	 */
-	public void setUserId(int userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
