@@ -32,9 +32,22 @@ var animalRescueSchema = mongoose.Schema({
 	assignedTo: String 
 })
 
+var ambulance = mongoose.Schema({
+	vehicleNumber: { type: String, required: true, trim: true, index: { unique: true } },
+	driverName: { type: String, required: true, trim: true },
+	driverContactNumber: { type: String, required: true, trim: true, index: { unique: true } },
+	location: [],
+	currentLocation: [],
+	capacity: Number,
+	load: Number
+})
 
+var complaint = mongoose.Schema({
+	
+})
 module.exports = {
 	Animal : mongoose.model('Animal', animalSchema),
 	User : mongoose.model('User', userSchema),
-	AnimalRescue  : mongoose.model('AnimalRescue', animalRescueSchema)
+	AnimalRescue  : mongoose.model('AnimalRescue', animalRescueSchema),
+	Ambulance : mongoose.model('Ambulance', ambulance)
 }
