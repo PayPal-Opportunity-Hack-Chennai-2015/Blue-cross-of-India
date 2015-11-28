@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="css/bootstrapValidator.min.css"/>
     <link href="css/half-slider.css" rel="stylesheet">
     <link href="css/datepicker.css" rel="stylesheet">
-    <link href="css/fullcalendar.min.css" rel="stylesheet">
+    <link href="css/bootstrap-switch.css" rel="stylesheet">
     
     
    
@@ -73,15 +73,13 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">First Name:</label>
-                    <div class="input-group col-xs-6 col-sm-4">
-                        <span class="input-group-addon glyphicon glyphicon-user"></span>
+                    <div class="col-xs-6 col-sm-4">
                         <input type="text" name="first_name" class="form-control" placeholder="First Name" data-error="Please enter First name" required/>
                         <div class="help-block with-errors"></div>
                     </div>
                     
-                    <label class="control-label col-sm-2">Last Name:</label>
-                    <div class="input-group col-xs-6 col-sm-4">
-                        <span class="input-group-addon glyphicon glyphicon-user"></span>
+                    <label class="control-label col-xs-6 col-sm-2">Last Name:</label>
+                    <div class="col-xs-6 col-sm-4">
                         <input type="text" name="last_name" class="form-control" placeholder="Last Name" required/>
                         <div class="help-block with-errors"></div>
                     </div>
@@ -90,18 +88,18 @@
                     <label class="control-label col-xs-6 col-sm-2">Gender:</label>
                     <div class="col-xs-6 col-sm-2">
                         <label class="radio-inline">
-                                <input type="radio" name="gender" id="inlineRadio1" value="Male">Male
+                                <input type="radio" name="gender" id="inlineRadio1" value="Male" checked="checked">Male
                             </label>
                              <label class="radio-inline">
                                 <input type="radio" name="gender" id="inlineRadio1" value="Female">Female
                             </label>
                     </div>
+                     
                 </div>
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">Address:</label>
-                    <div class="has-feedback col-xs-6 col-sm-10">
-                        <span class="glyphicon glyphicon-home form-control-feedback"></span>
-                        <input type="text" name="" class="form-control" placeholder="Address"/>
+                    <div class="col-xs-6 col-sm-10">
+                        <input type="text" name="address" class="form-control" placeholder="Address"/>
                     </div>
                 </div>
                 
@@ -120,35 +118,32 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">Zip Code:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                        <input type="text" name="phone" class="form-control" placeholder="Pin Code"/>
+                        <input type="text" name="zip" class="form-control" placeholder="Pin Code" required/>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">Mobile Phone:</label>
-                    <div class="has-feedback col-xs-6 col-sm-4">
-                        <input type="text" name="phone" class="form-control" placeholder="Mobile No."/>
-                        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="text" name="mobile_phone" class="form-control" placeholder="Mobile No." required/>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">Phone:</label>
-                    <div class="has-feedback col-xs-6 col-sm-4">
-                        <input type="text" name="" class="form-control" placeholder="Landline"/>
-                        <span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="text" name="phone" class="form-control" placeholder="Landline"/>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">E-Mail:</label>
-                    <div class="has-feedback col-xs-6 col-sm-4">
+                    <div class="col-xs-6 col-sm-4">
                         <input type="email" name="email" class="form-control" placeholder="Email"/>
-                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">DOB:</label>
-                    <div class="has-feedback date col-xs-6 col-sm-4" id="datePicker">
-                        <input type="text" name="dob" class="date-input form-control" placeholder="Date of Birth"/>
-                        <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                    <div class="date col-xs-6 col-sm-4" id="datePicker">
+                        <input type="text" name="dob" class="date-input form-control" placeholder="Date of Birth" required/>
+                        
                     </div>
 
                 </div>
@@ -160,9 +155,9 @@
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">Emergency Phone:</label>
-                    <div class="has-feedback col-xs-6 col-sm-4">
+                    <div class="col-xs-6 col-sm-4">
                         <input type="text" name="" class="form-control"/>
-                        <span class="glyphicon glyphicon-earphone form-control-feedback"></span>
+
                     </div>
                 </div>
                 
@@ -183,21 +178,42 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Please list the days and times that you are most likely to volunteer:</label>
                     <div class="col-xs-6 col-sm-7">
-                      
-                        
-                        
-                            <div class="btn-group">
-      <a class="btn dropdown-toggle btn-select" data-toggle="dropdown" href="#">Select a Country <span class="caret"></span></a>
-      <ul class="dropdown-menu">
-        <li><a href="#">Item I</a></li>
-        <li><a href="#">Item II</a></li>
-        <li><a href="#">Item III</a></li>
-        <li class="divider"></li>
-        <li><a href="#">Other</a></li>
-      </ul>
-    </div>
-                        </div>
+                      <select class="form-control" name="preferredTime">
+                        <option value="-1">Select your preferred time</option>
+                        <option>More than 5 hours a week</option>
+                        <option>1-5 hours a week</option>
+                        <option>4-5 days a month</option>
+                        <option>2-3 days a monthur</option>
+                        </select>    
                     </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-6 col-sm-5">Please indicate if you have any prefered days for volunteering</label>
+                    <div class="col-xs-6 col-sm-7">
+                      <label class="checkbox">
+                        <input type="checkbox" name="monday" id="monday" value="monday">Monday
+                    </label>
+                   <label class="checkbox">
+                        <input type="checkbox" name="tuesday" id="tuesday" value="tuesday">Tuesday
+                    </label>
+                        <label class="checkbox">
+                        <input type="checkbox" name="wednesday" id="wednesday" value="wednesday">Wednesday
+                    </label>
+                        <label class="checkbox">
+                        <input type="checkbox" name="thursday" id="thursday" value="thursday">Thursday
+                    </label>
+                        <label class="checkbox">
+                        <input type="checkbox" name="friday" id="friday" value="friday">Friday
+                    </label>
+                        <label class="checkbox">
+                        <input type="checkbox" name="saturday" id="saturday" value="saturday">Saturday
+                    </label>
+                        <label class="checkbox">
+                        <input type="checkbox" name="sunday" id="sunday" value="sunday">Sunday
+                    </label>
+                        
+                    </div>
+                </div>
                 
                 
                 <div class="form-group">
@@ -208,10 +224,15 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="control-label col-xs-6 col-sm-2">May we call you at work?</label>
-                    <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="" class="form-control"/>
+                    <label class="control-label col-xs-6 col-sm-4">May we call you at work?</label>
+                    <div class="checkbox col-xs-6 col-sm-2">        
+                       <div class="btn-group btn-toggle"> 
+                            <button class="btn btn-sm btn-default">YES</button>
+                            <button class="btn btn-sm btn-primary active">NO</button>
+                        </div>
                     </div>
+                        
+                    
                 
                     <label class="control-label col-xs-6 col-sm-2">Work Number:</label>
                     <div class="col-xs-6 col-sm-4">
@@ -241,9 +262,9 @@
                 </div>
                 
                 <div class="form-group">
-                    <div class="has feedback col-xs-6 col-sm-offset-2 col-sm-5">
-                        <button type="submit" class="btn btn-warning">Submit
-                            <span class="glyphicon glyphicon-send form-control-feedback"></span></button>
+                    <div class="has feedback">
+                        <button type="submit" class="btn btn-warning col-xs-6 col-sm-offset-2 col-sm-3">Submit</button>
+                            
                     </div>
                 </div>          
                 
@@ -259,21 +280,28 @@
     
     <script src="js/bootstrap-datepicker.js"></script>
     <script src="js/fullcalendar.min.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
     <script src="js/index.js"></script>
      <script type="text/javascript">
         
         $(".date-input").datepicker({
-});
-         $('#calendar').fullCalendar({
-  buttonText : {
-      prev : '<i class="glyphicon glyphicon-triangle-left"></i>',
-      next : '<i class="glyphicon glyphicon-triangle-right"></i>'
-  }
-});
+        });
         
+        $('.btn-toggle').click(function() {
+            $(this).find('.btn').toggleClass('active');  
+    
+            if ($(this).find('.btn-primary').size()>0) {
+    	       $(this).find('.btn').toggleClass('btn-primary');
+            }
+    
+            $(this).find('.btn').toggleClass('btn-default');
+       
+        });
+         
         $('.carousel').carousel({
         interval: 5000 //changes the speed
     });
+         
     </script>
 
 </body>
