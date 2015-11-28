@@ -9,15 +9,19 @@ exports.createComplaint = function (req,res) {
 	var complaint = {};
 	var animal    = {};
 
-	animal.name   = "";
-	animal.type   = req.body.animal_type || req.query.animal_type;
-	animal.location = [];
-	animal.location.push({
+	animal.name     = "";
+	animal.type     = req.body.animal_type || req.query.animal_type;
+	animal.location = {
 		lat: req.body.animal_location.lat,
 		lon: req.body.animal_location.lon
 	})
-	animal.doctor = "";
+	animal.doctor     = "";
 	animal.assignedTo = "";
+
+	// Create a new model for the animal
+	Animal(animal).save(function(err, _animal) {
+
+	});
 
 
 }

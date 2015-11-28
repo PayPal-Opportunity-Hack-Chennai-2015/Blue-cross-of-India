@@ -33,13 +33,14 @@ var animalRescueSchema = mongoose.Schema({
 });
 
 var ambulance = mongoose.Schema({
-	vehicleNumber		: { type: String, required: true, trim: true, index: { unique: true } },
-	driverName 			: { type: String, required: true, trim: true },
-	driverContactNumber : { type: String, required: true, trim: true, index: { unique: true } },
-	location 			: [],
-	currentLocation		: [],
-	capacity			: Number,
-	load				: Number
+	vehicleNumber	   : { type: String, required: true, trim: true, index: { unique: true } },
+	driverName         : { type: String, required: true, trim: true },
+	driverContactNumber: { type: String, required: true, trim: true, index: { unique: true } },
+	location           : [{ type: [Number], index: '2d' }],
+	currentLocation    : [],
+	capacity           : Number,
+	load               : Number,
+	isEmergency        : Boolean
 });
 
 var complaint = mongoose.Schema({
