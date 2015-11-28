@@ -1,0 +1,37 @@
+# ignore compiled files
+*.class
+
+# ignore ide generated files
+*.project
+*.settings
+*.classpath
+*.checkstyle
+*.pmd
+*.MF
+*.log
+*.metadata
+
+# ignore maven generated files
+target*
+bin* 
+bin/
+# ignore os generated files
+.DS_Store*
+Thumbs.db 
+
+#ignore other files
+vpproject* 
+
+# ignore ide generated files
+*.iml
+*.project
+.idea*
+
+#ignore tomcat server folder
+Servers/
+
+#ignore .mvn folder
+.mvn/
+
+
+
