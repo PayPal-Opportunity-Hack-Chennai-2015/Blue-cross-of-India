@@ -34,6 +34,7 @@ module.exports = function(express, app) {
 	var userRouter = express.Router();
 
 	userRouter.get('/', session.isAuthenticated);
+	userRouter.post('/login', user.signIn, session.signIn);
 	//userRouter.post('/create');
 
 	app.use('/user', userRouter);
