@@ -25,6 +25,7 @@ var animalRescueSchema = mongoose.Schema({
 	name 	 :{ type: String, required: true, trim: true },
 	type     :{ type: String, required: true, trim: true},
 	location : [],
+	currentLocation: {},
 	state    : [],
 	treatment: [],
 	doctor   : { type: String, required: true, trim: true },
@@ -36,8 +37,8 @@ var ambulance = mongoose.Schema({
 	vehicleNumber	   : { type: String, required: true, trim: true, index: { unique: true } },
 	driverName         : { type: String, required: true, trim: true },
 	driverContactNumber: { type: String, required: true, trim: true, index: { unique: true } },
-	location           : [{ type: [Number], index: '2d' }],
-	currentLocation    : [],
+	location           : [],
+	currentLocation    : [{ type: [Number], index: '2d' }],
 	capacity           : Number,
 	load               : Number,
 	isEmergency        : Boolean
@@ -49,13 +50,14 @@ var complaint = mongoose.Schema({
 	registerEmail	: { type: String, required: true, trim: true },
 	registerPhone	: { type: String, required: true, trim: true, index: { unique: true } },
 	complaintStatus : { type: String, required: true, trim: true},
-	Comments		: String,
-	TimeStamp       : String
+	comments		: String,
+	timeStamp       : String
 });
 
 module.exports = {
 	Animal 			: mongoose.model('Animal', animalSchema),
 	User 			: mongoose.model('User', userSchema),
 	AnimalRescue  	: mongoose.model('AnimalRescue', animalRescueSchema),
-	Ambulance 		: mongoose.model('Ambulance', ambulance)
+	Ambulance 		: mongoose.model('Ambulance', ambulance),
+	Complaint       : mongoose.model('Complaint', complaint)
 }
