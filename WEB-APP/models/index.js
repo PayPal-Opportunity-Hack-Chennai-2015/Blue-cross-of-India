@@ -22,33 +22,34 @@ var userSchema = mongoose.Schema( {
 
 var animalRescueSchema = mongoose.Schema({
 
-	name 	 :{ type: String, required: true, trim: true },
+	name 	 :{ type: String, trim: true },
 	type     :{ type: String, required: true, trim: true},
 	location : [],
 	currentLocation: {},
 	state    : [],
 	treatment: [],
-	doctor   : { type: String, required: true, trim: true },
+	doctor   : { type: String, trim: true },
 	pic      :   String,
 	assignedTo: String 
 });
 
 var ambulance = mongoose.Schema({
-	vehicleNumber	   : { type: String, required: true, trim: true, index: { unique: true } },
+	vehicleNumber	   : { type: String, required: true, trim: true },
 	driverName         : { type: String, required: true, trim: true },
-	driverContactNumber: { type: String, required: true, trim: true, index: { unique: true } },
+	driverContactNumber: { type: String, required: true, trim: true },
 	location           : [],
-	currentLocation    : [{ type: [Number], index: '2d' }],
+	currentLocation    : {  type: [Number],  index: '2d'},
 	capacity           : Number,
 	load               : Number,
+	assignedTo         : String,
 	isEmergency        : Boolean
 });
 
 var complaint = mongoose.Schema({
-	animalId  		: { type: String, required: true, trim: true, index: { unique: true } },
+	animalId  		: { type: String, required: true, trim: true },
 	registerBy		: { type: String, required: true, trim: true  },
 	registerEmail	: { type: String, required: true, trim: true },
-	registerPhone	: { type: String, required: true, trim: true, index: { unique: true } },
+	registerPhone	: { type: String, required: true, trim: true },
 	complaintStatus : { type: String, required: true, trim: true},
 	comments		: String,
 	timeStamp       : String

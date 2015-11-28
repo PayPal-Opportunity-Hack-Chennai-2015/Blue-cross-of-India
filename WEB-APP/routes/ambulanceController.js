@@ -11,21 +11,23 @@ exports.createAmbulance = function(req,res){
 	else {
 		amb = req.body;
 	}
-
-	var newAmbulance = new ambulance(amb);
-
-	newAmbulance.save(function (err) {
-	  if (err) {
-			return err;
-	  }
-	  else {
-		res.status(200);
-		res.send({
-				status: "SUCCESS",
-				msg   : "Ambulance added successfully"
-			});
-	  }
+	
+	ambulance(amb).save(function(err,_amb){
+		if(err){
+			res.status(400);
+			res.send({
+				status: "error",
+				msg   : "Vehicle / Mobile Number already registered"
+			})
+		} 
+		else {
+			res.status(200);
+			res.send(_amb);
+		}
+		
 	});
+
+
 }
 
 exports.updateAmbulance = function(req,res){
@@ -38,14 +40,35 @@ exports.updateAmbulance = function(req,res){
 	else {
 		amb = req.body;
 	}
+	
 	if( amb._id) {
 		ambulance.findOne({ '_id' :  _id }, function(err, ambulan) { 
 			if(ambulan) {
+				if(amb.vehicleNumber){
+					ambulan.vehicleNumber=amb.vehicleNumber;
+				}
+				if(amb.driverName){
+					ambulan.driverName=amb.driverName;
+				}
+				if(amb.driverContactNumber){
+					ambulan.driverContactNumber=amb.driverContactNumber;
+				}
+				if(amb.capacity){
+					ambulan.capacity=amb.capacity;
+				}
+				if(amb.load){
+					ambulan.load=amb.load;
+				}
+				if(amb.isEmergency){
+					ambulan.isEmergency=amb.isEmergency;
+				}
+				if(amb.currentLocation){
+					ambulan.location.push({"lang":amb.currentLocation,"timeStamp":new Date()});
+					ambulan.currentLocation=amb.currentLocation;
+				}
+				ambulan.save();
 				res.status(200);
 				res.send(ambulan);
-				ambulan.location.push({
-					lat: ambulan.currentLocation
-				});
 				}
 				else {
 					res.status(401);
@@ -54,7 +77,7 @@ exports.updateAmbulance = function(req,res){
 						msg   : "please  pass a proper id"
 					});
 				}
-					});
+		});
 	}
 	else {
 		res.status(400);
@@ -67,6 +90,7 @@ exports.updateAmbulance = function(req,res){
 
 exports.deleteAmbulance = function(req,res){
 	var _id = req.query._id || req.body._id || "";
+	console.log("nnnnnnnn"+_id)
 	if( _id) {
 		ambulance.remove({ '_id' :  _id }, function(err) { 
 			if(!err) {
@@ -97,8 +121,7 @@ exports.deleteAmbulance = function(req,res){
 exports.getAmbulance = function(req,res){
 	var _id = req.query._id || req.body._id || "";
 	if( _id) {
-		ambulance.findOne({ '_id' :  _id }, function(err, amb) { 
-			console.log(amb)
+		ambulance.findById(_id, function(err, amb) { 
 			if(amb) {
 				res.status(200);
 				res.send(amb);

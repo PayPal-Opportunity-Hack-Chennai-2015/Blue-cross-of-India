@@ -3,7 +3,7 @@ var user        = require("./routes/userController");
 var complaint   = require("./routes/caseController");
 var animal      = require("./routes/animalController.js");
 var ambulance   = require("./routes/ambulanceController.js");
-
+var report      = require("./routes/reportController.js");
 
 var path        = require('path');
 var multer      = require('multer');
@@ -24,6 +24,10 @@ module.exports = function(express, app) {
 	// =============================================
 
 	var indexRouter = express.Router();
+
+	indexRouter.get('/', function(req,res) {
+		res.redirect('/app');
+	});
 
 	indexRouter.get('/ping', function(req,res) {
 		res.send({ 
@@ -70,11 +74,21 @@ module.exports = function(express, app) {
 	var AmbulanceRouter = express.Router();
 	
 	AmbulanceRouter.post('/createAmbulance', session.isAuthenticated, ambulance.createAmbulance);
-	AmbulanceRouter.post('/updateAmbulance', session.isAuthenticated, ambulance.updateAmbulance);
-	AmbulanceRouter.post('/deleteAmbulance', session.isAuthenticated, ambulance.deleteAmbulance);
+	AmbulanceRouter.put('/updateAmbulance', session.isAuthenticated, ambulance.updateAmbulance);
+	AmbulanceRouter.delete('/deleteAmbulance', session.isAuthenticated, ambulance.deleteAmbulance);
 	AmbulanceRouter.get('/getAmbulance',session.isAuthenticated, ambulance.getAmbulance);
 	AmbulanceRouter.get('/getAllAmbulance',session.isAuthenticated, ambulance.getAllAmbulance);
 	
 	app.use('/ambulance',AmbulanceRouter);
+
+
+	// =============================================
+	// ========== REPORT ROUTER =====================
+	// =============================================
+
+	var ReportRouter = express.Router();
+	ReportRouter.get('/date', report.getReportForDate);
+
+	app.use('/report', ReportRouter);
 }
 
