@@ -8,7 +8,28 @@
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            
+            first_name: {
+                validators: {
+                    stringLenght: {
+                        min:2
+                    },
+                    notEmpty: {
+                        message: 'Please supply your first name'
+                    },
+                    
+                }
+            },
+            last_name: {
+                validators: {
+                    stringLenght: {
+                        min:2
+                    },
+                    notEmpty: {
+                        message: 'Please supply your last name'
+                    },
+                    
+                }
+            },
              
             email: {
                 validators: {
@@ -20,17 +41,7 @@
                     }
                 }
             },
-            phone: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please supply your phone number'
-                    },
-                    phone: {
-                        country: 'US',
-                        message: 'Please supply a vaild phone number with area code'
-                    }
-                }
-            },
+            
             address: {
                 validators: {
                      stringLength: {
@@ -41,47 +52,20 @@
                     }
                 }
             },
-            city: {
-                validators: {
-                     stringLength: {
-                        min: 4,
-                    },
-                    notEmpty: {
-                        message: 'Please supply your city'
-                    }
-                }
-            },
-            state: {
-                validators: {
-                    notEmpty: {
-                        message: 'Please select your state'
-                    }
-                }
-            },
+            
+            
             zip: {
                 validators: {
                     notEmpty: {
                         message: 'Please supply your zip code'
                     },
                     zipCode: {
-                        country: 'US',
+                        
                         message: 'Please supply a vaild zip code'
                     }
                 }
             },
-            comment: {
-                validators: {
-                      stringLength: {
-                        min: 10,
-                        max: 200,
-                        message:'Please enter at least 10 characters and no more than 200'
-                    },
-                    notEmpty: {
-                        message: 'Please supply a description of your project'
-                    }
-                    }
-                }
             }
-        })
+        });
         
 });
