@@ -3,8 +3,8 @@
  */
 package org.bluecross.service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.bluecross.persistence.data.Volunteer;
 import org.bluecross.repository.persistence.VolunteerRepository;
@@ -31,6 +31,23 @@ public class VolunteerService {
 
 	public List<Volunteer> getByStatus(String status) {
 		return volunteerRepository.findByStatus(status);
+	}
+
+	public List<Volunteer> getAll() {
+	   return (ArrayList<Volunteer>) volunteerRepository.findAll();
+	}
+
+	public void reject(List<String> ids) {
+		updateStatus("REJECTED",ids);
+		
+	}
+
+	public void updateStatus(String status, List<String> ids) {
+		for(String id:ids){
+			Volunteer volunteer = volunteerRepository.findOne(Long.valueOf(id));
+			volunteer.setStatus(status);
+			volunteerRepository.save(volunteer);
+		}
 	}
 
 
