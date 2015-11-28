@@ -18,8 +18,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-
 var cors = require("cors");
+
 app.use(cors({
     origin: true,
     credentials: true
