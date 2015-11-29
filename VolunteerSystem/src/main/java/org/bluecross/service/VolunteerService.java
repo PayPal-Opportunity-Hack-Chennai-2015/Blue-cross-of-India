@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.bluecross.persistence.data.Volunteer;
 import org.bluecross.repository.persistence.VolunteerRepository;
+import org.bluecross.util.EMailUtility;
+import org.bluecross.util.EmailTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,9 @@ import org.springframework.stereotype.Service;
 public class VolunteerService {
 	
 	@Autowired
+	private EMailUtility emailUtil;
+	
+	@Autowired
 	private VolunteerRepository volunteerRepository;
 
 	public String getName() {
@@ -26,7 +31,10 @@ public class VolunteerService {
 	}
 
 	public String save(Volunteer volunteer) {
-		return String.valueOf(volunteerRepository.save(volunteer).getUserId());
+		Volunteer savedVolunteer = volunteerRepository.save(volunteer);
+		emailUtil.sendEmail(savedVolunteer.getEmailId(), EmailTemplate.REGISTRATION_ACCEPTED_SUBJECT, 
+				EmailTemplate.getRegistrationAcceptanceMessage(savedVolunteer.getFirstName(), String.valueOf(savedVolunteer.getUserId())));
+		return String.valueOf(savedVolunteer.getUserId());
 	}
 
 	public List<Volunteer> getByStatus(String status) {
