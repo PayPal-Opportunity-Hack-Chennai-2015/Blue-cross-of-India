@@ -14,14 +14,15 @@ angular
 
 .factory('DataService', dataService);
 
-dataService.$inject = ['$http','$window'];
+dataService.$inject = ['$http','$window', 'AuthService'];
 
-function dataService($http, $window){
+function dataService($http, $window, AuthService){
 
 	var URI = "http://localhost:3000";
 
 	var data = {
-		login : login
+		login : login,
+		getRecentComplaints : getRecentComplaints
 	};
 
 	return data;
@@ -34,6 +35,16 @@ function dataService($http, $window){
                     data: { email: email, password: password },
                     url: URI + '/user/login',
                 })
+	}
+
+	function getRecentComplaints() {
+		var d = new Date();
+		var Timestamp = d.getDate() + "-" + (d.getMonth()+1) + "-" + d.getFullYear();
+		return $http({
+					method: 'GET',
+					params: { TimeStamp: Timestamp, token: AuthService.getToken() },
+					url   : URI + '/report/today'
+		})
 	}
 
 				

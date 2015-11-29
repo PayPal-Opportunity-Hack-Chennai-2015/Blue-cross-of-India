@@ -1,0 +1,54 @@
+<ion-view view-title="Category - {{type}}" cache-view="true" enable-menu-with-back-views="false">
+	<ion-nav-buttons side="left">
+      <button ng-controller="utils" on-tap="go('back')" class="button icon ion-android-arrow-back"></button>
+    </ion-nav-buttons>
+
+	<ion-content overflow-scroll="true" animation="slide-left-right">
+
+		<div class="ionic">
+            <div class="content lighten">
+                <div class="condensed-space no-padding">
+                    <a ng-repeat="p in products" class="item item-avatar item-icon-right" on-tap="viewProduct(p)"> 
+                    	<div class="row" on-tap="viewProduct(p)">
+							<div class="col col-20">
+								<img style="height:100%; width: 100%" ng-src="{{p.image}}">
+							</div>
+							<div class="col col-50">
+								<p class="product-title"><b>{{::p.name}}</b></p>
+                         		<p>By {{::p.manufacturer}}</p>
+							</div>
+							<div class="col col-20">
+								<i class="icon fa fa-inr" style="font-size: 16px">{{::p.price}}</i>
+							</div>
+                    	</div>					    
+					</a> 
+                </div>
+            </div>
+        </div>
+
+        <swipe-cards>
+		  <swipe-card ng-repeat="card in questions" on-card-swipe="">
+		    <div class="title">
+		    	<center>
+			    	<h5 style="line-height:2">
+			    		{{card.question}}
+			    	</h5>
+		    	</center>
+		    </div>
+		    <div class="list">
+
+			  <label class="item item-radio" ng-repeat="a in card.options" ng-click="selectChoice(a.score)">
+			    <input type="radio" name="choice">
+			    <div class="item-content">
+			      {{a.answer}}
+			    </div>
+			    <i class="radio-icon ion-checkmark"></i>
+			  </label>
+			<button class="button button-positive" style="position:fixed; bottom:0; text-align: center; width: 100%; margin-top:20px" ng-click="nextCard($index)">Next</button>
+			</div>
+		  </swipe-card>
+		</swipe-cards>
+
+	</ion-content> 
+
+</ion-view>

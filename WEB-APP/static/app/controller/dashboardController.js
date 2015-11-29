@@ -14,4 +14,10 @@ function dashController ($rootScope, $scope, $state, AuthService, DataService) {
 
 	$rootScope.isLoggedIn = true;
 
+	$scope.complaints = [];
+
+	DataService.getRecentComplaints().then(function(d){
+		$scope.complaints = d.data;
+	});
+
 }

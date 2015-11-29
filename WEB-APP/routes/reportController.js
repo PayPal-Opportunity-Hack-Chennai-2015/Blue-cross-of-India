@@ -1,15 +1,32 @@
-var User    		       = require("../models").User;
-var bcrypt  			   = require('bcrypt-nodejs');
-var complaint   		   = require("../models").Complaint;
+var User     = require("../models").User;
+var bcrypt   = require('bcrypt-nodejs');
+var complaint    = require("../models").Complaint;
 var animalRescueSchema     = require("../models").AnimalRescue;
 
+
+exports.getComplaints = function(req,res) {
+
+	var d = new Date();
+	
+	var Timestamp = d.getDate() + "-" + (d.getMonth()+1) + "-" + d.getFullYear();
+
+	complaint.find({ 'timeStamp.date': Timestamp }, function(err, complaints) { 
+
+		if(err) {
+			console.log(err);
+		}
+		res.status(200);
+		res.send(complaints);
+
+	}); 
+}
 
 exports.getReportForDate = function (req,res) {
 	var TimeStamp = req.query.TimeStamp || req.body.TimeStamp || "";
 	
 
 	if( TimeStamp) {
-		complaint.find({ 'TimeStamp' :  TimeStamp },{animalId:1}, function(err, animalIds) { 
+		complaint.find({ 'timeStamp.date': TimeStamp },{animalId:1}, function(err, animalIds) { 
 			// If the user is available in DB
 			if(animalIds.length) {
 				animalRescueSchema.find({_id:{$in:animalIds}}, function(err, animalDetails) { 

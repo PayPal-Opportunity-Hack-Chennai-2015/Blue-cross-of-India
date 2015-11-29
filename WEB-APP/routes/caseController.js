@@ -11,6 +11,13 @@ exports.createComplaint = function (req,res) {
 	var complaint = {};
 	var animal    = {};
 
+	var d = new Date();
+	
+	var timestamp = { 
+		date : d.getDate() + "-" + (d.getMonth()+1) + "-" + d.getFullYear(),
+		time : d.getHours() + ":" + d.getMinutes()
+	}
+
 	animal.name     = "";
 	animal.type     = req.body.animal_type || req.query.animal_type;
 	animal.currentLocation = {
@@ -51,7 +58,7 @@ exports.createComplaint = function (req,res) {
 		function(callback) {
 			// Create a new model for the complaint
 			complaint.animalId  = _animal._id;
-			complaint.timeStamp = new Date();
+			complaint.timeStamp = timestamp;
 
 			Complaint(complaint).save(function(err, d_complaint) {
 				if(err) console.log(err);

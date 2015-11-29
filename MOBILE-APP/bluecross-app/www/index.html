@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="lib/material-design-lite/css/ionic.material-design-lite.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/material-design-lite/js/ionic.material-design-lite.bundle.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script> 
+    <script src="lib/underscore/underscore-min.js"></script> 
+    <script src="lib/brain/brain.min.js"></script>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="lib/swipecard/ionic.swipecards.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+    
+    <script src="js/controller.js"></script>
+    <script src="js/app.js"></script>
+    
+  </head>
+  <body ng-app="bluecross" class="platform-android">
+
+     <ion-side-menus enable-menu-with-back-views="true" animation="slide-left-right">
+        <ion-side-menu side="left">
+       
+          <ion-content>
+            <div class="list side-menu" ng-controller="utils">
+              <div class="side-menu-header">
+                <center style="padding-top: 50px; font-size: 25px;">
+                  <span class="light" style="line-height: 2;font-weight: 100;" ng-controller="homeController">
+                    Hello!
+                  </span>
+                </center>
+              </div>
+             <div class="item item-divider">
+               Activities
+             </div>
+             
+             <a menu-close class="item" ng-click="go('/adoption')">
+               <i class="ion ion-flash"></i>Adoptions
+             </a>
+
+             <a menu-close class="item" ng-click="go('/volunteer')">
+               <i class="ion ion-ios-people"></i>Volunteer
+             </a>
+             
+             <a menu-close class="item" ng-click="go('/donate')">
+               <i class="ion ion-social-usd"></i>Donate to BCI
+             </a>
+
+              <div class="item item-divider">
+                Miscellaneous
+              </div>
+
+              <a menu-close class="item" ng-click="go('/about')">
+                <i class="ion ion-person-stalker"></i>About Us
+              </a>
+
+            </div>
+          </ion-content>
+        </ion-side-menu>
+
+        <ion-side-menu-content>
+            <ion-nav-bar class="bar bar-header bar-positive">
+
+            </ion-nav-bar>
+            <ion-nav-view></ion-nav-view>
+        </ion-side-menu-content>
+    </ion-side-menus>
+
+  </body>
+</html>
