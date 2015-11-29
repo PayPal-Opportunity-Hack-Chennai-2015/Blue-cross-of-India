@@ -3,13 +3,17 @@
  */
 package org.bluecross.persistence.data;
 
-import java.sql.Date;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.SequenceGenerator;
 
 import org.springframework.data.annotation.Id;
 
+@SequenceGenerator(name = "VOLUNTEER_SEQ", initialValue = 8000, allocationSize = 1)
 public class Volunteer {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private String userId;
 
     private String status;
