@@ -72,14 +72,14 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">First Name:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="first_name" class="form-control" placeholder="First Name" data-error="Please enter First name" 
+                        <input type="text" name="firstName" class="form-control" placeholder="First Name" data-error="Please enter First name" 
 						ng-model="firstName" required/>
                         <div class="help-block with-errors"></div>
                     </div>
                     
                     <label class="control-label col-xs-6 col-sm-2">Last Name:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="last_name" class="form-control" placeholder="Last Name" ng-model="lastName" required />
+                        <input type="text" name="lastName" class="form-control" placeholder="Last Name" ng-model="lastName" required />
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
@@ -105,89 +105,90 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">City:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                       <input type="text" name="city" class="form-control" value="CHENNAI" ng-model="city" readonly/>
+                       <input type="text" name="city" class="form-control" ng-model="volunteer.city" readonly/>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">Country:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                         <input type="text" name="country" class="form-control" value="INDIA" ng-model="country" readonly/>
+                         <input type="text" name="country" class="form-control" ng-model="volunteer.country" readonly/>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">Zip Code:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                        <input type="text" name="zip" class="form-control" placeholder="Pin Code" ng-model="pincode" required/>
+                        <input type="text" name="pincode" class="form-control" placeholder="Pin Code" ng-model="pincode" required/>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">Mobile Phone:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="mobile_phone" class="form-control" placeholder="Mobile No." ng-model="mobileNumber" required/>
+                        <input type="text" name="mobileNumber" class="form-control" placeholder="Mobile No." ng-model="mobileNumber" required/>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">Phone:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="phone" class="form-control" placeholder="Landline" ng-model="landPhone"/>
+                        <input type="text" name="landPhone" class="form-control" placeholder="Landline" ng-model="landPhone"/>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">E-Mail:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="email" name="email" class="form-control" placeholder="Email" ng-model="emailId"/>
+                        <input type="email" name="emailId" class="form-control" placeholder="Email" ng-model="emailId"/>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">DOB:</label>
                     <div class="date col-xs-6 col-sm-4" id="datePicker">
-                        <input type="text" name="dob" class="date-input form-control" placeholder="Date of Birth" ng-model="dateOfBirth" required/>
+                        <input type="text" name="dateOfBirth" class="date-input form-control" placeholder="Date of Birth" ng-model="dateOfBirth" required/>
                         
                     </div>
 
                 </div>
                 
                 <div class="form-group">
-                    <label class="control-label col-xs-6 col-sm-2">EMERGENCY Contact & Relationship:</label>
+                	 <label class="control-label col-xs-6 col-sm-2">Emergency Phone:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="emergencyContact" class="form-control" ng-control="relationEmergencyContact"/>
-                    </div>
-                
-                    <label class="control-label col-xs-6 col-sm-2">Emergency Phone:</label>
-                    <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="emergencyNumber" class="form-control" ng-control="emergencyNumber"/>
+                        <input type="text" name="emergencyNumber" class="form-control" ng-control="emergencyNumber" required/>
 
                     </div>
+                    <label class="control-label col-xs-6 col-sm-2">Relationship with Emergency Contact:</label>
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="text" name="relationEmergencyContact" class="form-control" ng-control="relationEmergencyContact"/>
+                    </div>
+                
+                   
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Why are you interested in becoming a volunteer at our Centre?:</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="2" ng-model="reasonForVolunteering"></textarea>
+                        <textarea name="reasonForVolunteering" class="form-control" rows="2" ng-model="reasonForVolunteering" required></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Describe any previous experience working with animals:</label>
                     <div class="col-xs-6 col-sm-7">
-                         <textarea name="" class="form-control" rows="3" ng-model="previousExperiences"></textarea>
+                         <textarea name="previousExperiences" class="form-control" rows="3" ng-model="previousExperiences"></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Please list the days and times that you are most likely to volunteer:</label>
                     <div class="col-xs-6 col-sm-7">
-                      <select class="form-control" name="preferredTime" ng-model="availabilityWeekHours">
-                        <option value="-1">Select your preferred time</option>
+                      <select class="form-control" name="availabilityWeekHours" ng-model="availabilityWeekHours">
+                        
                         <option>More than 5 hours a week</option>
                         <option>1-5 hours a week</option>
                         <option>4-5 days a month</option>
-                        <option>2-3 days a monthur</option>
+                        <option>2-3 days a month</option>
                         </select>    
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-xs-6 col-sm-5">Please indicate if you have any prefered days for volunteering</label>
+                    <label class="control-label col-xs-6 col-sm-5">Please indicate if you have any preferred days for volunteering</label>
                     <div class="col-xs-6 col-sm-7" ng-model="availabilityDays">
                       <label class="checkbox">
                         <input type="checkbox" name="monday" id="monday" value="monday" ng-checked="volunteer.changeAvailability('Monday')">Monday
@@ -218,7 +219,7 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">List present and previous volunteer jobs:</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="2" ng-model="prevVolunteerJobs"></textarea>
+                        <textarea name="prevVolunteerJobs" class="form-control" rows="2" ng-model="prevVolunteerJobs"></textarea>
                     </div>
                 </div>
                 
@@ -226,43 +227,43 @@
                     <label class="control-label col-xs-6 col-sm-4">May we call you at work?</label>
                     <div class="checkbox col-xs-6 col-sm-2">        
                        <div class="btn-group btn-toggle" ng-model="callAtWork"> 
-                            <button class="btn btn-sm btn-default" value="Yes">YES</button>
-                            <button class="btn btn-sm btn-primary active" value="No">NO</button>
+                            <button class="btn btn-sm btn-default" value="Yes" ng-click="volunteer.callUs(true)">YES</button>
+                            <button class="btn btn-sm btn-primary active" value="No" ng-click="volunteer.callUs(false)">NO</button>
                         </div>
                     </div>
-                        
-                    
-                
+
+				<div ng-if="volunteer.shouldWeCall">
                     <label class="control-label col-xs-6 col-sm-2">Work Number:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="" class="form-control" ng-model="workNumber"/>
+                        <input type="text" name="workNumber" class="form-control" ng-model="workNumber"/>
                     </div>
+                   </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Educational experience (if currently in school, include name of school, grade and course of study):</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="4" ng-model="educationalExperience"></textarea>
+                        <textarea name="educationalExperience" class="form-control" rows="4" ng-model="educationalExperience"></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">How did you come to know about volunteering at BCI?</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="2" ng-model="howYouKnow"></textarea>
+                        <textarea name="howYouKnow" class="form-control" rows="2" ng-model="howYouKnow"></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">List additional information that may be useful (i.e., special skills, training, interests, hobbies):</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="2" ng-model="additionalInfo"></textarea>
+                        <textarea name="additionalInfo" class="form-control" rows="2" ng-model="additionalInfo"></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <div class="">
-                        <button type="submit" class="btn btn-primary col-xs-6 col-sm-offset-2 col-sm-3" ng-submit="volunteer.submitForm()">Submit</button>
+                        <button class="btn btn-primary col-xs-6 col-sm-offset-2 col-sm-3" ng-click="volunteer.submitForm()">Submit</button>
                     </div>
                 </div>          
                 

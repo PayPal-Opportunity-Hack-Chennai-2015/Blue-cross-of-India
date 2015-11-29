@@ -1,19 +1,39 @@
 var app = angular.module('VolunteerSystem',[]);
 
-app.controller('VolunteerController',function($scope, $http){
+app.controller("VolunteerController",['$http',function($http){
 	this.availabilityDays = "";
+	this.city = "Chennai";
+	this.country = "India";
+	this.shouldWeCall = false;
 	this.changeAvailability = function(day) {
-		this.availabilityDays = this.availabilityDays + "," + day;
+		if (this.availabilityDays.indexOf(day) > -1) {
+			this.availabilityDays = this.availabilityDays + "," + day;
+		}
 	};
-	var volunteerData = $('#regForm').serialize();
-	console.log(volunteerData);
+
+	this.callUs = function(boolean) {
+		this.shouldWeCall = boolean;
+	};
+	
+	
 	this.submitForm = function($http) {
-		var request = $http({
-            method: "POST",
-            url: "vms/volunteer/add",
-            data :volunteerData
-            
-        });
-		$http.ajax(request);
+		var volunteerData = $('#regForm').serialize();
+		console.log(volunteerData);
+//		var request = $http({
+//            method: "POST",
+//            url: "vms/volunteer/add",
+//            data :volunteerData
+//            
+//        });
+		$http.post('/vms/volunteer/add', volunteerData).
+		  success(function(data) {
+		    $scope.error = false;
+		    $scope.data = data;
+		  }).
+		  error(function(data) {
+		    $scope.error = true;
+		    $scope.data = data;
+		  });
+//		$http.ajax(request);
 	};
-});
+}]);
