@@ -1,6 +1,7 @@
 package org.bluecross.util;
 
 import javax.inject.Inject;
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -39,6 +40,7 @@ public class EMailUtility {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailId));
             message.setSubject(subject);
             message.setText(body);
+            message.setFrom(new InternetAddress("do-not-reply@bluecross.org"));
             Transport.send(message);
             LOGGER.info("Successfully sent an email to " + emailId);
         }
