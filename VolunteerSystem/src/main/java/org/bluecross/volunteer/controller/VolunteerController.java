@@ -3,6 +3,7 @@
  */
 package org.bluecross.volunteer.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bluecross.persistence.data.Volunteer;
@@ -22,37 +23,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/volunteer")
 public class VolunteerController {
-	
-	@Autowired
-	private VolunteerService volunteerService;
-	
+
+    @Autowired
+    private VolunteerService volunteerService;
+
     /**
      * @param volunteer
      * @return
      */
-    @RequestMapping(value="/add",method=RequestMethod.POST)
-    public String save(@RequestBody Volunteer volunteer) {
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String save(@ModelAttribute Volunteer volunteer) {
         return volunteerService.save(volunteer);
     }
-    
+
     @RequestMapping("/getByStatus/{status}")
     public List<Volunteer> getVolunteersByStatus(@PathVariable String status) {
-    	return volunteerService.getByStatus(status);
+        return volunteerService.getByStatus(status);
     }
-    
+
     @RequestMapping("/getAll")
     public List<Volunteer> getAllVolunteers() {
-    	return volunteerService.getAll();
+        return volunteerService.getAll();
     }
-    
-    @RequestMapping("/reject")
-    public void reject(@PathVariable List<String> ids) {
-    	 volunteerService.reject(ids);
+
+    @RequestMapping(value = "/reject", method = RequestMethod.POST, consumes = "application/json")
+    public void reject(@RequestBody ArrayList<Volunteer> volunteerIds) {
+        volunteerService.reject(volunteerIds);
     }
-    
-    @RequestMapping("/updateStatus/{status}")
-    public void reject(@PathVariable String status, @ModelAttribute("ids") List<String> ids) {
-    	 volunteerService.updateStatus(status,ids);
+
+    @RequestMapping(value = "/updateStatus/{status}", method = RequestMethod.POST, consumes = "application/json")
+    public void reject(@PathVariable String status, @RequestBody ArrayList<Volunteer> volunteerIds) {
+        volunteerService.updateStatus(status, volunteerIds);
     }
 
 }

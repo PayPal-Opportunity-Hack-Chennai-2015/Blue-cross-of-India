@@ -1,11 +1,12 @@
 package org.bluecross.util;
 
-import java.util.Properties;
+import java.util.concurrent.Future;
 
+import javax.ejb.Asynchronous;
 import javax.inject.Inject;
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -14,6 +15,7 @@ import javax.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Component;
 
 /**
@@ -35,18 +37,22 @@ public class EMailUtility {
      * @param subject, email subject
      * @param body, email body
      */
-    public void sendEmail(String emailId, String subject, String body) {
+    @Asynchronous
+    public Future<String> sendEmail(String emailId, String subject, String body) {
+        String status = "";
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailId));
             message.setSubject(subject);
             message.setText(body);
+            message.setFrom(new InternetAddress("do-not-reply@bluecross.org"));
             Transport.send(message);
             LOGGER.info("Successfully sent an email to " + emailId);
         }
         catch (MessagingException e) {
-            LOGGER.error("Exception occured while sending an email: " + e.getMessage());
+            LOGGER.error("Exception occured while sending an email: " + e);
         }
+        return new AsyncResult<String>(status);
     }
 }
