@@ -24,14 +24,14 @@ function display(param){
         document.getElementById("contentArea").style.display="block";
         document.getElementById("interviewDetails").style.display="block";
     }
-    else{
+    else if(param === "Applicants for Induction"){
         document.getElementById("inductionDetails").style.display="block";
         document.getElementById("contentArea").style.display="block";
         document.getElementById("logo").style.display="none";
         document.getElementById("interviewDetails").style.display="none";
     }
 }
-    
+  
     function checkAll(ele) {
      var checkboxes = document.getElementsByTagName('input');
      if (ele.checked) {
@@ -84,7 +84,7 @@ function display(param){
       </script>
   </head>
 
-  <body ng-controller="VolunteerController as volunteer">
+  <body ng-controller="VolunteerController as volunteerCtrl">
 <div class="container">
     <div class="jumbotron">
   <h1 style="color:#6cacf0;}">Blue Cross of India</h1>
@@ -93,8 +93,8 @@ function display(param){
     <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="parent_title">Choose the applicants
     <span class="caret"></span></button>
     <ul class="dropdown-menu">
-      <li><a href="javascript:display('Applicants for Interview');">Applicants for Interview</a></li>   
-      <li><a href="javascript:display('Applicants for Induction');">Applicants for Induction</a></li>
+      <li><a href="javascript:display('Applicants for Interview');" ng-click="volunteerCtrl.getStatus('NEW')">Applicants for Interview</a></li>   
+      <li><a href="javascript:display('Applicants for Induction');" ng-click="volunteerCtrl.getStatus('INT_SCHEDULED')">Applicants for Induction</a></li>
                 </ul>
     </div>
 </div>
@@ -109,34 +109,37 @@ function display(param){
           <thead>
             <tr>
               <th><input type="checkbox" onchange="checkAll(this)" name="chk[]"></th>
-              <th>UserID</th>
-              <th>UserName</th>
+              <th>First Name</th>
+              <th>Last name</th>
               <th>ContactNumber</th>
-              <th>DOB</th>
-              <th>Status</th>
+              <th>Date Of Birth</th>
+              <th>Address</th>
+              <th>E-mail</th>
             </tr>
           </thead>
           
-              <div ng-init="volunteers = [
+              <!-- div ng-init="volunteers = [
   {uid:50001,uname:'John',contactNumber:'999999999' ,DOB:'25/03/1990', status:'Registered'},
   {uid:50002,uname:'John', contactNumber:'999999999' ,DOB:'25/03/1990', status:'Registered'},
 {uid:50007,uname:'John',contactNumber:'999999999' , DOB:'25/03/1990', status:'Registered'},
 {uid:50004,uname:'John',contactNumber:'999999999' , DOB:'25/03/1990', status:'Registered'}
 ]">
   
-</div>
+</div-->
               
               
-            <tbody  ng-model="q" placeholder="filter volunteers..." aria-label="filter volunteers">
-            <tr ng-repeat="volunteer in volunteers | orderBy:'-uid'" >
+            <tbody placeholder="filter volunteers..." aria-label="filter volunteers" ng-repeat="volunteer in volunteerCtrl.volunteersList">
+            <tr>
                 <td style="align:center;"><input type="checkbox"></td>
-              <td>{{volunteer.uid}}</td>
-              <td>{{volunteer.uname}}</td>
-                <td>{{volunteer.contactNumber}}</td>
-                <td>{{volunteer.DOB}}</td>
-                <td>{{volunteer.status}}</td>
+              <td>{{volunteer.firstName}}</td>
+              <td>{{volunteer.lastName}}</td>
+                <td>{{volunteer.mobileNumber}}</td>
+                <td>{{volunteer.dateOfBirth}}</td>
+                <td>{{volunteer.address}}</td>
+                <td>{{volunteer.emailId}}</td>
                 
               </tr>
+            
           </tbody>
         </table>
             </div>
@@ -148,22 +151,27 @@ function display(param){
         <table class="table  table-responsive table-bordered table-hover">
           <thead>
             <tr>
-            <th><input type="checkbox" name="selectAll" value="selectAll"> Select All</th>
-              <th>Country</th>
-              <th>Languages</th>
-              <th>Population</th>
-              <th>Median Age</th>
-              <th>Area (Km²)</th>
+            <th><input type="checkbox" onchange="checkAll(this)" name="chk[]"></th>
+              <th>First Name</th>
+              <th>Last name</th>
+              <th>ContactNumber</th>
+              <th>Date Of Birth</th>
+              <th>Address</th>
+              <th>E-mail</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody placeholder="filter volunteers..." aria-label="filter volunteers" ng-repeat="volunteer in volunteerCtrl.volunteersList">
             <tr>
-              <td>Argentina</td>
-              <td>Spanish (official), English, Italian, German, French</td>
-              <td>41,803,125</td>
-              <td>31.3</td>
-              <td>2,780,387</td>
-            </tr>
+                <td style="align:center;"><input type="checkbox"></td>
+              <td>{{volunteer.firstName}}</td>
+              <td>{{volunteer.lastName}}</td>
+                <td>{{volunteer.mobileNumber}}</td>
+                <td>{{volunteer.dateOfBirth}}</td>
+                <td>{{volunteer.address}}</td>
+                <td>{{volunteer.emailId}}</td>
+                
+              </tr>
+             
           </tbody>
         </table>
       </div>
@@ -177,7 +185,6 @@ function display(param){
     </div>
   </div>
         <script src="js/jquery-1.11.1.min.js"></script>
-        <script src="js/index.js"></script>
 
   </body>
 </html>
