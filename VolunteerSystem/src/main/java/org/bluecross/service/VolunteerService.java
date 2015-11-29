@@ -26,9 +26,12 @@ public class VolunteerService {
         return String.valueOf(volunteerRepository.findAll().spliterator().getExactSizeIfKnown());
     }
 	public String save(Volunteer volunteer) {
+    	volunteer.setStatus("NEW");
 		Volunteer savedVolunteer = volunteerRepository.save(volunteer);
 		emailUtil.sendEmail(savedVolunteer.getEmailId(), EmailTemplate.REGISTRATION_ACCEPTED_SUBJECT, 
 				EmailTemplate.getRegistrationAcceptanceMessage(savedVolunteer.getFirstName(), String.valueOf(savedVolunteer.getUserId())));
+		emailUtil.sendEmail("SHANKER.RAJHAN@BLUECROSSOFINDIA.ORG", EmailTemplate.REGISTRATION_CONFIRMED_ADMIN_SUBJECT, 
+				EmailTemplate.getNewRegistrationAdminMessage(savedVolunteer.getFirstName(), String.valueOf(savedVolunteer.getUserId())));
 		return String.valueOf(savedVolunteer.getUserId());
 	}
 

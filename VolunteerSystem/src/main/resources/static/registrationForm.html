@@ -58,9 +58,8 @@
 
     </header>
     <div class="container">
-    <div class="row" id="registrationForm" style="display:none;">
-        <div class="col-xs-12 col-sm-12"><br />
-            <div style="color:red; font-weight:bold; font-size:20px; text-align:center;">Note : Volunteers should be available in chennai !!</div>
+    <div class="row">
+        <div id="registration" class="col-xs-12 col-sm-12">
             <form id="regForm" data-toggle="validator" class="form-horizontal" role="form">
                 <div class="form-group" align="center">
                     <h3>Volunteer Registration Form</h3>
@@ -267,7 +266,8 @@
                
             </form>
         </div>
-        </div>
+        <div id="confirmation" style="display: none;"><h2>Hi User,<br/>Thanks for registration.<br/>Your registration details will be sent in an email to your registered mail id.<br/></h2><br/>
+        <h1>{{volunteer.registrationId}}</h1></div>
     <div class="row" id="guideLines">
         <p>
         <pre>
@@ -317,7 +317,7 @@
                
        
     </div>
-    </div>
+
     </div>
     <script src="js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
