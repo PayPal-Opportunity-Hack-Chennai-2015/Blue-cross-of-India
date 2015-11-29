@@ -25,7 +25,17 @@ app.controller("VolunteerController",['$http',function($http){
 //            data :volunteerData
 //            
 //        });
-		$http.post('/vms/volunteer/add', volunteerData).
+		
+		$.ajax({
+				method : "POST",
+			  url: "/vms/volunteer/add",
+			  data: volunteerData
+			}).done(function() {
+			  $( this ).addClass( "done" );
+			});
+		
+		
+		/*$http.post('/vms/volunteer/add', volunteerData).
 		  success(function(data) {
 		    $scope.error = false;
 		    $scope.data = data;
@@ -33,7 +43,7 @@ app.controller("VolunteerController",['$http',function($http){
 		  error(function(data) {
 		    $scope.error = true;
 		    $scope.data = data;
-		  });
+		  });*/
 //		$http.ajax(request);
 	};
 }]);
