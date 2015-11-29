@@ -11,6 +11,7 @@ app.controller("VolunteerController",['$http',function($http){
 			this.availabilityDays = this.availabilityDays + "," + day;
 		}
 	};
+	this.volunteersList = null;
 
 	this.callUs = function(boolean) {
 		this.shouldWeCall = boolean;
@@ -47,11 +48,17 @@ app.controller("VolunteerController",['$http',function($http){
 	};
 	
 	this.getStatus = function(status) {
+		var _this=this;
+		/*$http.get("/vms/volunteer/getByStatus/"+status).success(function(data) {
+			console.log("data"+data);
+			_this.volunteersList = data;
+		});*/
+		
 		$.ajax({
-			method : "POST",
-			  url: "/vms/getByStatus/status"
-			}).done(function() {
-			  $( this ).addClass( "done" );
+			method : "GET",
+			  url: "/vms/volunteer/getByStatus/"+status
+			}).done(function(data) {
+				_this.volunteersList = data;
 			});
 
 	};
