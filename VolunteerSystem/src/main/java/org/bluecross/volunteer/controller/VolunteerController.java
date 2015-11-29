@@ -4,7 +4,6 @@
 package org.bluecross.volunteer.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.bluecross.persistence.data.Volunteer;
@@ -34,7 +33,6 @@ public class VolunteerController {
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String save(@ModelAttribute Volunteer volunteer) {
-    	volunteer.setStatus("NEW");
         return volunteerService.save(volunteer);
     }
 

@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/myangular.js"></script>
    
+   
 </head>
     
 <body ng-controller="VolunteerController as volunteer">
@@ -58,7 +59,7 @@
     </header>
     <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-12">
+        <div id="registration" class="col-xs-12 col-sm-12">
             <form id="regForm" data-toggle="validator" class="form-horizontal" role="form">
                 <div class="form-group" align="center">
                     <h3>Volunteer Registration Form</h3>
@@ -254,16 +255,66 @@
                     </div>
                 </div>
                 
+                
+                
                 <div class="form-group">
                     <div class="">
-                        <button class="btn btn-primary col-xs-6 col-sm-offset-2 col-sm-3" ng-click="volunteer.submitForm()">Submit</button>
+                        <button class="btn btn-primary col-xs-6 col-sm-offset-2 col-sm-3" ng-click="volunteer.submitForm()">Register</button>
                     </div>
                 </div>          
                 
                
             </form>
         </div>
-        </div>
+        <div id="confirmation" style="display: none;"><h2>Hi User,<br/>Thanks for registration.<br/>Your registration details will be sent in an email to your registered mail id.<br/></h2><br/>
+        <h1>{{volunteer.registrationId}}</h1></div>
+    <div class="row" id="guideLines">
+        <p>
+        
+    <h3 style="color:green;">DOs for BCI Volunteers</h3> 
+    <ul style="color:brown; font-size:20px;">
+       <li>Every volunteer should be committed to the policies of BCI.</li> 
+       <li>Volunteers must follow the instructions of BCI Head.</li>
+       <li>All the volunteers must fill in their respective time-sheets which includes in-and-out timings and details of work done.</li>
+       <li>Before starting any activity, permission of the concerned doctor should be obtained.</li>
+       <li>It is mandatory for volunteers to wear gloves while handling the animals.</li>
+       <li>Volunteers must be punctual if they have taken responsibility for an event.</li>
+       <li>Volunteers must be clear about the days and timings when they will be available.</li>
+       <li>While joining the organization, volunteers have to go through an interview, orientation program and an induction.</li>
+       <li>It is mandatory for volunteers to carry their ID cards at all times and to be shown on request.</li>
+       <li>Volunteers should follow the escalation clause as given by the CEO/BCI Head.</li>
+    </ul>
+<h3 style="color:red;">DON’Ts for BCI Volunteers</h3> 		
+        <ul style="color:brown; font-size:20px;">
+        <li>Any inhumane treatment or harm caused to animals</li>
+            <li>Once assigned to a particular task, volunteers should not drift away from their responsibilities. prior intimation should be given to the BCI office, if they are unable to fulfil commitment. </li>
+            <li>A volunteer should not create any differences between team members or go against the policies of BCI.</li>
+            <li>No volunteer should try to induce any change without the knowledge and concurrence of the Management.</li>
+            <li>Volunteers should not attempt to give instructions to the Vets or the staff at the shelter. </li>
+            <li>The shelter is a hospital with a large number of infected animals and not a zoo and the </li>
+            <li>volunteers should avoid visiting the various sections when they come to the shelter, to prevent the spread of infection and ectoparasites.</li>
+            <li>With the exception of puppies and kittens the volunteers need to avoid the handling of the small mammals and birds such as, rabbits, guinea pigs, parrots etc, unless there is a specific treatment related reason to do so. </li>
+            <li>Doctors are the persons in charge of a particular area without whose permission no one is allowed to enter the kennel.</li>
+            <li>Smoking, chewing tobacco and consumption of alcohol or non-vegetarian food is strictly prohibited within the BCI shelters and in events. </li>
+            <li>Volunteers getting into any altercation with any member of the staff or GB member will be terminated from volunteering with immediate effect.</li>
+        </ul>
+
+
+        
+        </p>
+        </br>
+          <div class="form-group">
+                    <div class="">
+                        <a class="btn btn-warning col-xs-6 col-sm-offset-2 col-sm-3" href="javascript:registrationForm();"><b>Accept</b></a>
+                        <a class="btn btn-warning col-xs-6 col-sm-offset-2 col-sm-3" href="http://bluecrossofindia.org/"><b>Decline</b></a>
+                    </div>
+             
+                </div>          
+                
+               
+       
+    </div>
+
     </div>
     <script src="js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -293,6 +344,13 @@
         interval: 5000 //changes the speed
     });
          
+          
+    function registrationForm(){
+    
+     document.getElementById("guideLines").style.display="none";
+     document.getElementById("registrationForm").style.display="block";
+}
+    
     </script>
 
 </body>
