@@ -18,6 +18,7 @@
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/myangular.js"></script>
    
+   
 </head>
     
 <body ng-controller="VolunteerController as volunteer">
@@ -40,16 +41,10 @@
             <div class="item">
                 <!-- Set the second background image using inline CSS below. -->
                 <div class="fill" style="background-image:url('img/imageFirst.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Caption 2</h2>
-                </div>
             </div>
             <div class="item">
                 <!-- Set the third background image using inline CSS below. -->
-                <div class="fill" style="background-image:url('img/qq.jpg');"></div>
-                <div class="carousel-caption">
-                    <h2>Caption 3</h2>
-                </div>
+                <div class="fill" style="background-image:url('img/finalanimal.jpg');"></div>
             </div>
         
         </div>
@@ -63,8 +58,8 @@
 
     </header>
     <div class="container">
-    <div class="row">
-        <div class="col-xs-12 col-sm-12">
+    <div class="row" style="display:none;" id="applicationForm">
+        <div id="registration" class="col-xs-12 col-sm-12">
             <form id="regForm" data-toggle="validator" class="form-horizontal" role="form">
                 <div class="form-group" align="center">
                     <h3>Volunteer Registration Form</h3>
@@ -72,14 +67,14 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">First Name:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="first_name" class="form-control" placeholder="First Name" data-error="Please enter First name" 
+                        <input type="text" name="firstName" class="form-control" placeholder="First Name" data-error="Please enter First name" 
 						ng-model="firstName" required/>
                         <div class="help-block with-errors"></div>
                     </div>
                     
                     <label class="control-label col-xs-6 col-sm-2">Last Name:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="last_name" class="form-control" placeholder="Last Name" ng-model="lastName" required />
+                        <input type="text" name="lastName" class="form-control" placeholder="Last Name" ng-model="lastName" required />
                         <div class="help-block with-errors"></div>
                     </div>
                 </div>
@@ -105,89 +100,89 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">City:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                       <input type="text" name="city" class="form-control" value="CHENNAI" ng-model="city" readonly/>
+                       <input type="text" name="city" class="form-control" ng-model="volunteer.city" readonly/>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">Country:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                         <input type="text" name="country" class="form-control" value="INDIA" ng-model="country" readonly/>
+                         <input type="text" name="country" class="form-control" ng-model="volunteer.country" readonly/>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">Zip Code:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                        <input type="text" name="zip" class="form-control" placeholder="Pin Code" ng-model="pincode" required/>
+                        <input type="text" name="pincode" class="form-control" placeholder="Pin Code" ng-model="pincode" required/>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">Mobile Phone:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="mobile_phone" class="form-control" placeholder="Mobile No." ng-model="mobileNumber" required/>
+                        <input type="text" name="mobileNumber" class="form-control" placeholder="Mobile No." ng-model="mobileNumber" required/>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">Phone:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="phone" class="form-control" placeholder="Landline" ng-model="landPhone"/>
+                        <input type="text" name="landPhone" class="form-control" placeholder="Landline" ng-model="landPhone"/>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">E-Mail:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="email" name="email" class="form-control" placeholder="Email" ng-model="emailId"/>
+                        <input type="email" name="emailId" class="form-control" placeholder="Email" ng-model="emailId"/>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">DOB:</label>
                     <div class="date col-xs-6 col-sm-4" id="datePicker">
-                        <input type="text" name="dob" class="date-input form-control" placeholder="Date of Birth" ng-model="dateOfBirth" required/>
+                        <input type="text" name="dateOfBirth" class="date-input form-control" placeholder="Date of Birth" ng-model="dateOfBirth" required/>
                         
                     </div>
 
                 </div>
                 
                 <div class="form-group">
-                    <label class="control-label col-xs-6 col-sm-2">EMERGENCY Contact & Relationship:</label>
+                	 <label class="control-label col-xs-6 col-sm-2">Emergency Phone:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="emergencyContact" class="form-control" ng-control="relationEmergencyContact"/>
-                    </div>
-                
-                    <label class="control-label col-xs-6 col-sm-2">Emergency Phone:</label>
-                    <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="emergencyNumber" class="form-control" ng-control="emergencyNumber"/>
+                        <input type="text" name="emergencyNumber" class="form-control" ng-control="emergencyNumber" required/>
 
                     </div>
+                    <label class="control-label col-xs-6 col-sm-2">Relationship with Emergency Contact:</label>
+                    <div class="col-xs-6 col-sm-4">
+                        <input type="text" name="relationEmergencyContact" class="form-control" ng-control="relationEmergencyContact"/>
+                    </div>
+                
+                   
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Why are you interested in becoming a volunteer at our Centre?:</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="2" ng-model="reasonForVolunteering"></textarea>
+                        <textarea name="reasonForVolunteering" class="form-control" rows="2" ng-model="reasonForVolunteering" required></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Describe any previous experience working with animals:</label>
                     <div class="col-xs-6 col-sm-7">
-                         <textarea name="" class="form-control" rows="3" ng-model="previousExperiences"></textarea>
+                         <textarea name="previousExperiences" class="form-control" rows="3" ng-model="previousExperiences"></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Please list the days and times that you are most likely to volunteer:</label>
                     <div class="col-xs-6 col-sm-7">
-                      <select class="form-control" name="preferredTime" ng-model="availabilityWeekHours">
-                        <option value="-1">Select your preferred time</option>
+                      <select class="form-control" name="availabilityWeekHours" ng-model="availabilityWeekHours">
                         <option>More than 5 hours a week</option>
                         <option>1-5 hours a week</option>
                         <option>4-5 days a month</option>
-                        <option>2-3 days a monthur</option>
+                        <option>2-3 days a month</option>
                         </select>    
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-xs-6 col-sm-5">Please indicate if you have any prefered days for volunteering</label>
+                    <label class="control-label col-xs-6 col-sm-5">Please indicate if you have any preferred days for volunteering</label>
                     <div class="col-xs-6 col-sm-7" ng-model="availabilityDays">
                       <label class="checkbox">
                         <input type="checkbox" name="monday" id="monday" value="monday" ng-checked="volunteer.changeAvailability('Monday')">Monday
@@ -218,7 +213,7 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">List present and previous volunteer jobs:</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="2" ng-model="prevVolunteerJobs"></textarea>
+                        <textarea name="prevVolunteerJobs" class="form-control" rows="2" ng-model="prevVolunteerJobs"></textarea>
                     </div>
                 </div>
                 
@@ -226,50 +221,97 @@
                     <label class="control-label col-xs-6 col-sm-4">May we call you at work?</label>
                     <div class="checkbox col-xs-6 col-sm-2">        
                        <div class="btn-group btn-toggle" ng-model="callAtWork"> 
-                            <button class="btn btn-sm btn-default" value="Yes">YES</button>
-                            <button class="btn btn-sm btn-primary active" value="No">NO</button>
+                            <button class="btn btn-sm btn-default" value="Yes" ng-click="volunteer.callUs(true)">YES</button>
+                            <button class="btn btn-sm btn-primary active" value="No" ng-click="volunteer.callUs(false)">NO</button>
                         </div>
                     </div>
-                        
-                    
-                
+
+				<div ng-if="volunteer.shouldWeCall">
                     <label class="control-label col-xs-6 col-sm-2">Work Number:</label>
                     <div class="col-xs-6 col-sm-4">
-                        <input type="text" name="" class="form-control" ng-model="workNumber"/>
+                        <input type="text" name="workNumber" class="form-control" ng-model="workNumber"/>
                     </div>
+                   </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">Educational experience (if currently in school, include name of school, grade and course of study):</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="4" ng-model="educationalExperience"></textarea>
+                        <textarea name="educationalExperience" class="form-control" rows="4" ng-model="educationalExperience"></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">How did you come to know about volunteering at BCI?</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="2" ng-model="howYouKnow"></textarea>
+                        <textarea name="howYouKnow" class="form-control" rows="2" ng-model="howYouKnow"></textarea>
                     </div>
                 </div>
                 
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-5">List additional information that may be useful (i.e., special skills, training, interests, hobbies):</label>
                     <div class="col-xs-6 col-sm-7">
-                        <textarea name="" class="form-control" rows="2" ng-model="additionalInfo"></textarea>
+                        <textarea name="additionalInfo" class="form-control" rows="2" ng-model="additionalInfo"></textarea>
                     </div>
                 </div>
                 
+                
+                
                 <div class="form-group">
                     <div class="">
-                        <button type="submit" class="btn btn-primary col-xs-6 col-sm-offset-2 col-sm-3" ng-submit="volunteer.submitForm()">Submit</button>
+                        <button class="btn btn-primary col-xs-6 col-sm-offset-2 col-sm-3" ng-click="volunteer.submitForm()">Register</button>
                     </div>
                 </div>          
                 
                
             </form>
         </div>
+        <div id="confirmation" style="display: none;"><h2>Hi User,<br/>Thanks for registration.<br/>Your registration details will be sent in an email to your registered mail id.<br/></h2><br/>
+        <h1>{{volunteer.registrationId}}</h1></div>
         </div>
+    <div class="row" id="guideLines" style="display:block;">
+        <p>
+    <h3 style="color:green;">DOs for BCI Volunteers</h3> 
+    <ul style="color:brown; font-size:20px;">
+       <li>Every volunteer should be committed to the policies of BCI.</li> 
+       <li>Volunteers must follow the instructions of BCI Head.</li>
+       <li>All the volunteers must fill in their respective time-sheets which includes in-and-out timings and details of work done.</li>
+       <li>Before starting any activity, permission of the concerned doctor should be obtained.</li>
+       <li>It is mandatory for volunteers to wear gloves while handling the animals.</li>
+       <li>Volunteers must be punctual if they have taken responsibility for an event.</li>
+       <li>Volunteers must be clear about the days and timings when they will be available.</li>
+       <li>While joining the organization, volunteers have to go through an interview, orientation program and an induction.</li>
+       <li>It is mandatory for volunteers to carry their ID cards at all times and to be shown on request.</li>
+       <li>Volunteers should follow the escalation clause as given by the CEO/BCI Head.</li>
+    </ul>
+<h3 style="color:red;">DON’Ts for BCI Volunteers</h3> 		
+        <ul style="color:brown; font-size:20px;">
+        <li>Any inhumane treatment or harm caused to animals</li>
+            <li>Once assigned to a particular task, volunteers should not drift away from their responsibilities. prior intimation should be given to the BCI office, if they are unable to fulfil commitment. </li>
+            <li>A volunteer should not create any differences between team members or go against the policies of BCI.</li>
+            <li>No volunteer should try to induce any change without the knowledge and concurrence of the Management.</li>
+            <li>Volunteers should not attempt to give instructions to the Vets or the staff at the shelter. </li>
+            <li>The shelter is a hospital with a large number of infected animals and not a zoo and the </li>
+            <li>volunteers should avoid visiting the various sections when they come to the shelter, to prevent the spread of infection and ectoparasites.</li>
+            <li>With the exception of puppies and kittens the volunteers need to avoid the handling of the small mammals and birds such as, rabbits, guinea pigs, parrots etc, unless there is a specific treatment related reason to do so. </li>
+            <li>Doctors are the persons in charge of a particular area without whose permission no one is allowed to enter the kennel.</li>
+            <li>Smoking, chewing tobacco and consumption of alcohol or non-vegetarian food is strictly prohibited within the BCI shelters and in events. </li>
+            <li>Volunteers getting into any altercation with any member of the staff or GB member will be terminated from volunteering with immediate effect.</li>
+        </ul>
+        </p>
+        </br>
+          <div class="form-group">
+                    <div class="">
+                        <a class="btn btn-warning col-xs-6 col-sm-offset-2 col-sm-3" href="javascript:registrationForm();"><b>Accept</b></a>
+                        <a class="btn btn-warning col-xs-6 col-sm-offset-2 col-sm-3" href="http://bluecrossofindia.org/"><b>Decline</b></a>
+                    </div>
+             
+                </div>          
+                
+               
+       
+    </div>
+
     </div>
     <script src="js/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -299,6 +341,13 @@
         interval: 5000 //changes the speed
     });
          
+          
+    function registrationForm(){
+    
+     document.getElementById("guideLines").style.display="none";
+     document.getElementById("applicationForm").style.display="block";
+}
+    
     </script>
 
 </body>

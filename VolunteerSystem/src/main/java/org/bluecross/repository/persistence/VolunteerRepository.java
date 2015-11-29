@@ -6,15 +6,9 @@ package org.bluecross.repository.persistence;
 import java.util.List;
 
 import org.bluecross.persistence.data.Volunteer;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-/**
- * @author x074134
- *
- */
-@Repository
-public interface VolunteerRepository extends CrudRepository<Volunteer, Long> {
+public interface VolunteerRepository extends MongoRepository<Volunteer, String>{
 
 	/**
 	 * @param status
