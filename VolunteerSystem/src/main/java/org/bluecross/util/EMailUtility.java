@@ -2,6 +2,7 @@ package org.bluecross.util;
 
 import java.util.Properties;
 
+import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -23,35 +24,12 @@ public class EMailUtility {
 
     private final Logger LOGGER = LoggerFactory.getLogger(EMailUtility.class);
 
-    @Value("#{mail.username}")
-    private String username;
-
-    @Value("#{mail.password}")
-    private String password;
-
-    @Value("#{mail.smtp.host}")
-    private String smtpHost;
-
-    @Value("#{mail.smtp.port}")
-    private String smtpPort;
-
-    private Session session = null;
-
-    public EMailUtility() {
-        Properties props = new Properties();
-        props.put("mail.smtp.host", smtpHost);
-        props.put("mail.smtp.socketFactory.port", smtpPort);
-        props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.port", smtpPort);
-
-        session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(username, password);
-            }
-        });
-    }
-
+    @Inject
+    private Session session;
+    
+    @Value("${mail.username}")
+	private String username;
+    
     /**
      * @param emailId, email To recipient address
      * @param subject, email subject
