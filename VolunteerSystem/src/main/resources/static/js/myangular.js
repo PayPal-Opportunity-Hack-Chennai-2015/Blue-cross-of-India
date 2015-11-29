@@ -18,32 +18,26 @@ app.controller("VolunteerController",['$http',function($http){
 	
 	this.submitForm = function($http) {
 		var volunteerData = $('#regForm').serialize();
-		console.log(volunteerData);
-//		var request = $http({
-//            method: "POST",
-//            url: "vms/volunteer/add",
-//            data :volunteerData
-//            
-//        });
-		
 		$.ajax({
 				method : "POST",
+
 			  url: "/vms/volunteer/add",
 			  data: volunteerData
 			}).done(function() {
 			  $( this ).addClass( "done" );
 			});
-		
-		
-		/*$http.post('/vms/volunteer/add', volunteerData).
-		  success(function(data) {
-		    $scope.error = false;
-		    $scope.data = data;
-		  }).
-		  error(function(data) {
-		    $scope.error = true;
-		    $scope.data = data;
-		  });*/
-//		$http.ajax(request);
+
 	};
+	
+	this.getStatus = function(status) {
+		$.ajax({
+			method : "POST",
+			  url: "/vms/getByStatus/status"
+			}).done(function() {
+			  $( this ).addClass( "done" );
+			});
+
+	};
+		
+	
 }]);

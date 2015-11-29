@@ -69,7 +69,7 @@
             mobileNumber: {
                 validators: {
                 	stringLength: {
-                		max :10
+                		max :11
                 	},
                     notEmpty: {
                         message: 'Please supply your mobile number'
@@ -79,14 +79,14 @@
             landPhone: {
                 validators: {
                 	stringLength: {
-                		max :10
+                		max :11
                 	},
                 }
             },
             emergencyNumber : {
             	validators: {
                 	stringLength: {
-                		max :10
+                		max :11
                 	},
                     notEmpty: {
                         message: 'Please supply your emergency mobile number'

@@ -38,7 +38,7 @@ public class Volunteer {
 	private String gender;
 
 	@Column(name = "DATE_OF_BIRTH")
-	private Date dateOfBirth;
+	private String dateOfBirth;
 
 	@Column(name = "ADDRESS")
 	private String address;
@@ -171,20 +171,6 @@ public class Volunteer {
 		this.gender = gender;
 	}
 
-	/**
-	 * @return the dateOfBirth
-	 */
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	/**
-	 * @param dateOfBirth
-	 *            the dateOfBirth to set
-	 */
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
 
 	/**
 	 * @return the address
@@ -469,6 +455,14 @@ public class Volunteer {
 	 */
 	public void setAdditionalInfo(String additionalInfo) {
 		this.additionalInfo = additionalInfo;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 }

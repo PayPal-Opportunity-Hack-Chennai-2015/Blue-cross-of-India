@@ -43,7 +43,7 @@ public class EMailUtility {
             LOGGER.info("Successfully sent an email to " + emailId);
         }
         catch (MessagingException e) {
-            LOGGER.error("Exception occured while sending an email: " + e.getMessage());
+            LOGGER.error("Exception occured while sending an email: " + e);
         }
     }
 }
