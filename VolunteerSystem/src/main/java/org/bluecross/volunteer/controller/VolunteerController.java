@@ -4,7 +4,6 @@
 package org.bluecross.volunteer.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.bluecross.persistence.data.Volunteer;

@@ -13,10 +13,6 @@ import org.bluecross.util.EmailTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- * @author x074134
- *
- */
 @Service
 public class VolunteerService {
 	
@@ -26,10 +22,9 @@ public class VolunteerService {
 	@Autowired
 	private VolunteerRepository volunteerRepository;
 
-	public String getName() {
-		return String.valueOf(volunteerRepository.findAll().spliterator().getExactSizeIfKnown());
-	}
-
+    public String getName() {
+        return String.valueOf(volunteerRepository.findAll().spliterator().getExactSizeIfKnown());
+    }
 	public String save(Volunteer volunteer) {
     	volunteer.setStatus("NEW");
 		Volunteer savedVolunteer = volunteerRepository.save(volunteer);
@@ -40,26 +35,25 @@ public class VolunteerService {
 		return String.valueOf(savedVolunteer.getUserId());
 	}
 
-	public List<Volunteer> getByStatus(String status) {
-		return volunteerRepository.findByStatus(status);
-	}
+    public List<Volunteer> getByStatus(String status) {
+        return volunteerRepository.findByStatus(status);
+    }
 
-	public List<Volunteer> getAll() {
-	   return (ArrayList<Volunteer>) volunteerRepository.findAll();
-	}
+    public List<Volunteer> getAll() {
+        return (ArrayList<Volunteer>) volunteerRepository.findAll();
+    }
 
-	public void reject(List<Volunteer> volunteerIds) {
-		updateStatus("REJECTED",volunteerIds);
-		
-	}
+    public void reject(List<Volunteer> volunteerIds) {
+        updateStatus("REJECTED", volunteerIds);
 
-	public void updateStatus(String status, List<Volunteer> volunteerIds) {
-		for(Volunteer volunteer:volunteerIds){
-			Volunteer updateVolunteer = volunteerRepository.findOne(Long.valueOf(volunteer.getUserId()));
-			updateVolunteer.setStatus(status);
-			volunteerRepository.save(updateVolunteer);
-		}
-	}
+    }
 
+    public void updateStatus(String status, List<Volunteer> volunteerIds) {
+        for (Volunteer volunteer : volunteerIds) {
+            Volunteer updateVolunteer = volunteerRepository.findOne(volunteer.getUserId().toString());
+            updateVolunteer.setStatus(status);
+            volunteerRepository.save(updateVolunteer);
+        }
+    }
 
 }
