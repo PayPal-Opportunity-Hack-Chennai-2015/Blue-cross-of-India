@@ -42,6 +42,7 @@ var ambulance = mongoose.Schema({
 	capacity           : Number,
 	load               : Number,
 	assignedTo         : String,
+	assignedToOrdinate : {},
 	isEmergency        : Boolean
 });
 

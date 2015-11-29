@@ -1,0 +1,33 @@
+<ion-view view-title="Rescue" cache-view="true" enable-menu-with-back-views="false">
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+	<ion-content overflow-scroll="true" animation="slide-left-right" ng-controller="utils">
+        
+        <h5 class="content-title padding-horizontal">Pickups Assigned</h5>
+
+        <div class="card" ng-if="isRideAssigned">
+            <h6 class="complaint-card-title">Address</h6>
+            <br>
+            <p>{{destinationAddress}}</p>
+        </div>
+
+		
+        <div class="card">
+
+            <h6 class="complaint-card-title" ng-hide="isRideAssigned">
+                No Rides Assigned
+            </h6>
+
+            <div ng-if="isRideAssigned">
+                <div id="googleMaps" style="width:350px;height:380px;"></div>
+            </div>
+            
+        </div>
+
+
+
+	</ion-content> 
+
+</ion-view>

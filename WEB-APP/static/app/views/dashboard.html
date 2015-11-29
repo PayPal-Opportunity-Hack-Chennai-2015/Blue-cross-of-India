@@ -5,8 +5,18 @@
       <div class="mdl-card__title">
         <h2 class="mdl-card__title-text">Recent Complaints</h2>
       </div>
-      <div class="mdl-card__supporting-text" ng-repeat="c in complaints">
-        {{c._id}} - {{c.complaintStatus}}
+      <table>
+        <tr>
+            <td>Ambulance Id</td>
+            <td>Picture</td>
+            <td>Complaint Status</td>
+        </tr>
+        <tr  ng-repeat="c in complaints">
+          <td>{{c._id}}</td>
+          <td><img ng-src="http://localhost:3000/uploads/{{c.driverName}}"></td>
+          <td>{{c.complaintStatus}}</td>
+        </tr>
+      </table>
       </div>
     </div>
     <div class="demo-cards mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet mdl-grid mdl-grid--no-spacing">

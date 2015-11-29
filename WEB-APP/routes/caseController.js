@@ -87,6 +87,9 @@ exports.createComplaint = function (req,res) {
 					Ambulance.findById(ambulance[0]._id, function(err, n_ambulance){
 						if(err) throw err;
 						n_ambulance.assignedTo = _complaint._id;
+						n_ambulance.assignedToOrdinate = {};
+						n_ambulance.assignedToOrdinate.lat = animal.currentLocation.lat;
+						n_ambulance.assignedToOrdinate.lon = animal.currentLocation.lon;
 						n_ambulance.save();
 						console.log("AMBULANCE ASSIGNED")
 						callback(null, n_ambulance);

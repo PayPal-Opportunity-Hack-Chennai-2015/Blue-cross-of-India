@@ -77,7 +77,7 @@ module.exports = function(express, app) {
 	AmbulanceRouter.post('/createAmbulance', session.isAuthenticated, ambulance.createAmbulance);
 	AmbulanceRouter.put('/updateAmbulance', session.isAuthenticated, ambulance.updateAmbulance);
 	AmbulanceRouter.delete('/deleteAmbulance', session.isAuthenticated, ambulance.deleteAmbulance);
-	AmbulanceRouter.get('/getAmbulance',session.isAuthenticated, ambulance.getAmbulance);
+	AmbulanceRouter.get('/getAmbulance', ambulance.getAmbulance);
 	AmbulanceRouter.get('/getAllAmbulance',session.isAuthenticated, ambulance.getAllAmbulance);
 	
 	app.use('/ambulance',AmbulanceRouter);

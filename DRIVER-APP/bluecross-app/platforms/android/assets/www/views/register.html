@@ -1,0 +1,37 @@
+<ion-view view-title="New Complaint" cache-view="true" enable-menu-with-back-views="false">
+    <ion-nav-buttons side="left">
+      <button ng-controller="utils" class="button icon ion-android-arrow-back" on-tap="go('back')"></button>
+    </ion-nav-buttons>
+
+	<ion-content overflow-scroll="true" animation="slide-left-right" ng-controller="utils">
+        <img src="" id="img_preview" style="width: 100%">
+        <div class="card camera-card" on-tap="openDialog()" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">
+            <center>
+               <h5><i class="ion-android-camera"></i>Choose a Picture</h5> 
+            </center>
+            <input type="file" id="file" ng-model="formData.pic" style="position:absolute; top:-100px"/>
+          
+        </div>
+
+        <div class="card">
+        	<h6 class="complaint-card-title">Details</h6>
+            <div class="list">
+                <label class="item item-input input-positive">
+                    <span class="input-label">Your Name</span>
+                    <input type="text" ng-model="formData.registerBy" class="">
+                </label>
+                <label class="item item-input input-positive">
+                    <span class="input-label">Mobile No</span>
+                    <input type="text" ng-model="formData.registerPhone" class="">
+                </label>
+                <label class="item item-input input-positive">
+                    <span class="input-label">Email Id</span>
+                    <input type="text" ng-model="formData.registerEmail" class="">
+                </label>
+                <button class="button button-block button-balanced mdl-js-button mdl-js-ripple-effect" ng-click="register()">Register Complaint</button>
+            </div>
+        </div>
+
+	</ion-content> 
+
+</ion-view>
