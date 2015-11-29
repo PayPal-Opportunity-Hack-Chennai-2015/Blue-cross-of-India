@@ -19,11 +19,10 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="lib/material-design-lite/js/ionic.material-design-lite.bundle.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.js"></script> 
-    <script src="lib/underscore/underscore-min.js"></script> 
-    <script src="lib/brain/brain.min.js"></script>
+    <script src="lib/underscore/underscore-min.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload-all.min.js"></script>
     <script src="lib/jquery/jquery.min.js"></script>
-    <script src="js/data.js"></script>
-    <script src="lib/swipecard/ionic.swipecards.js"></script>
+
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
     
@@ -31,7 +30,7 @@
     <script src="js/app.js"></script>
     
   </head>
-  <body ng-app="smartzone" class="platform-android">
+  <body ng-app="bluecross" class="platform-android">
 
      <ion-side-menus enable-menu-with-back-views="true" animation="slide-left-right">
         <ion-side-menu side="left">
@@ -41,28 +40,32 @@
               <div class="side-menu-header">
                 <center style="padding-top: 50px; font-size: 25px;">
                   <span class="light" style="line-height: 2;font-weight: 100;" ng-controller="homeController">
-                    Hello <br> {{user.name}} !
+                    Hello!
                   </span>
                 </center>
               </div>
-              <!-- <div class="item item-divider">
-                Your Information
-              </div>
-              
-              <a menu-close class="item" ng-click="go('/shorlist')">
-                <i class="ion ion-flash"></i>Shortlists
-              </a>
-              
-              <a menu-close class="item" ng-click="go('/orders')">
-                <i class="ion ion-clock"></i>Past Orders
-              </a> -->
+             <div class="item item-divider">
+               Activities
+             </div>
+             
+             <a menu-close class="item" ng-click="go('/adoption')">
+               <i class="ion ion-flash"></i>Adoptions
+             </a>
+
+             <a menu-close class="item" ng-click="go('/volunteer')">
+               <i class="ion ion-ios-people"></i>Volunteer
+             </a>
+             
+             <a menu-close class="item" ng-click="go('/donate')">
+               <i class="ion ion-social-usd"></i>Donate to BCI
+             </a>
 
               <div class="item item-divider">
                 Miscellaneous
               </div>
 
               <a menu-close class="item" ng-click="go('/about')">
-                <i class="ion ion-android-cart"></i>About SmartZone
+                <i class="ion ion-person-stalker"></i>About Us
               </a>
 
             </div>

@@ -17,7 +17,7 @@ function dashController ($rootScope, $scope, $state, AuthService, DataService) {
 	$scope.complaints = [];
 
 	DataService.getRecentComplaints().then(function(d){
-		$scope.complaints = d.data;
+		$scope.complaints = d.data.reverse();
 	});
 
 }

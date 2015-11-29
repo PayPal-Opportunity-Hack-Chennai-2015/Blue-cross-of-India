@@ -1,0 +1,29 @@
+<ion-view view-title="Case Registered" cache-view="true" enable-menu-with-back-views="false">
+    <ion-nav-buttons side="left">
+      <button ng-controller="utils" class="button icon ion-android-arrow-back" on-tap="go('home')"></button>
+    </ion-nav-buttons>
+
+	<ion-content overflow-scroll="true" animation="slide-left-right">
+        
+        <div class="card">
+           
+          <center>
+              <br>
+              <img src="img/checkmark_tick-128.png" />
+              <br><br>
+              <p>Ambulance on the way.
+              Details are as follows,</p>
+              <p>Vehicle No: {{vehicle.vehicleNumber}}</p>
+              <p>Driver Name: {{vehicle.driverName}}</p>
+              <p>Driver No: {{vehicle.driverContactNumber}}</p>
+
+          </center>
+          <a href="tel: vehicle.driverContactNumber" class="button button-block button-balanced">
+              CONTACT DRIVER
+          </a>
+        </div>
+
+
+	</ion-content> 
+
+</ion-view>

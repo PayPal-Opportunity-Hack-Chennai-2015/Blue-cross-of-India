@@ -1,154 +1,9 @@
 /* global angular, document, window */
 'use strict';
 
-angular.module('smartzone.controllers', ['ngCordova.plugins.localStorage','ionic.contrib.ui.cards'])
+var URL = "http://localhost:3000";
 
-.controller('categoryController', function($scope, $stateParams, $ionicModal,$ionicLoading) {
-	
-	$scope.type = $stateParams.type;
-
-	$scope.products = [];
-
-	$scope.questions = [];
-
-	$scope.count = 0;
-
-	$scope.selected = [];
-
-	$scope.choice = {};
-
-	$scope.len = 0;
-
-	switch($scope.type) {
-		case "computers":
-			$scope.questions = _.shuffle(laptop_questions);
-			$scope.products  = _.shuffle(laptops);
-			$scope.train     = laptop_trained;
-			$scope.len       = $scope.questions.length;
-			break;
-
-		case "smartphone":
-			$scope.questions = _.shuffle(smartphone_questions);
-			$scope.products  = _.shuffle(smartphones);
-			$scope.train     = smartphone_trained;
-			$scope.len       = $scope.questions.length;
-			break;
-
-		case "books" :
-			$scope.questions = _.shuffle(books_questions);
-			$scope.products  = _.shuffle(books);
-			$scope.train     = books_trained;
-			$scope.len       = $scope.questions.length
-	}
-
-	$scope.selectChoice = function(c){
-		$scope.choice = c;
-	}
-
-	$scope.nextCard = function(index) {
-
-		$ionicLoading.show({
-     	 	template: 'Loading...'
-   		 });
-
-		if(!_.isEmpty($scope.choice)) {
-			$scope.questions.splice(index, 1);
-			$scope.selected.push($scope.choice);
-			$scope.count++;
-
-			if($scope.count == $scope.len) {
-				
-				$(".lighten").removeClass('lighten');
-				// CHOICE OVER, NOW DETERMINE THE PRODUCTS
-				var aggregateData = _.map($scope.selected, function(s) {
-					return _.values(s);
-				})
-
-				var keys = _.keys($scope.selected[0]);
-				var total = [];
-
-				var summedData = _.reduce(aggregateData, function(m,n) {
-					total = [];
-					for( var i = 0; i < m.length; i++)
-					{
-					    total.push(m[i]+n[i]);
-					}
-					return total;
-
-				});
-
-				var values = _.map(summedData, function(m){
-					return m / $scope.len;
-				});
-
-				var finalData = _.object(keys,values);
-
-				var net = new brain.NeuralNetwork();
-
-				net.train($scope.train);
-
-				var op = net.run(finalData);
-
-				var arred = _.pairs(op);
-
-				arred.sort(function(a,b) {
-					return parseFloat(a[1]*10000) - parseFloat(b[1]*10000);
-				});
-
-				arred.reverse();
-
-				console.log(arred)
-
-				var results = _.map(arred, function(a) {
-					return _.findWhere($scope.products, { name: a[0] })
-				});
-
-				$scope.products = _.reject(results, function(n) {
-					return typeof n == "undefined";
-				})
-
-				$ionicLoading.hide();
-			}
-			$scope.choice = {};
-			$ionicLoading.hide();
-		}
-		
-	}
-	
-
-	$scope.modal = $ionicModal.fromTemplateUrl('views/view-product.html', {
-     	scope: $scope,
-     	animation: 'slide-in-up'
-    }).then(function(modal) {
-   		$scope.modal = modal;
-  	});
-
-
-	$scope.viewProduct = function(p) {
-		$scope.modal.product = p;
-		$scope.modal.quantity = 1;
-  		$scope.modal.price = p.price;
-  		$scope.modal.status = "ADD TO CART";
-		$scope.modal.show()
-	}
-
-	$scope.hideProduct = function(quantity) {
-  		$scope.modal.hide();
-  	}
-
-  	$scope.upQuantity = function() {
-  		$scope.modal.quantity = $scope.modal.quantity + 1;
-  		$scope.modal.price = $scope.modal.product.price * $scope.modal.quantity;
-  	}
-
-
-  	$scope.downQuantity = function() {
-
-  		$scope.modal.quantity = ($scope.modal.quantity > 1) ? ( $scope.modal.quantity -= 1 )  : ( $scope.modal.quantity = 1 )
-  		$scope.modal.price = $scope.modal.product.price * $scope.modal.quantity;
-  	}
-
-})
+angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 
 .controller('utils', function($scope, $location, $ionicHistory){
 
@@ -164,11 +19,106 @@ angular.module('smartzone.controllers', ['ngCordova.plugins.localStorage','ionic
 	
 })
 
-.controller('homeController', function($scope, $ionicPopup, $cordovaLocalStorage) {
-	
-	$scope.user = {};
+.controller('caseController', function($scope, $state, $http, $ionicLoading, $cordovaLocalStorage){
 
-	$scope.user.name = "";
+	$scope.formData = {};
+
+	function readURL(input) {
+
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            $('#img_preview').attr('src', e.target.result);
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	}
+
+	$("#file").change(function(){
+	    readURL(this);
+	});
+
+	$scope.openDialog = function() {
+		ionic.trigger('click', { target: document.getElementById('file') });
+	}
+
+	$scope.register = function() {
+
+		$ionicLoading.show();
+
+		var formData = new FormData();
+		formData.append("register_by", $scope.formData.registerBy);
+		formData.append("registerEmail", $scope.formData.registerEmail);
+		formData.append("registerPhone", $scope.formData.registerPhone);
+		formData.append("pic", $("#file")[0].files[0]);
+
+		function showPosition(position){
+
+			formData.append("animal_location", position.coords.latitude + "," + position.coords.longitude);
+			$.ajax({
+				url: URL + "/complaint/create",
+				data: formData,
+				cache: false,
+			    contentType: false,
+			    processData: false,
+			    type: 'POST',
+			    success: function(res){
+			    	$cordovaLocalStorage.setItem('ambulance',JSON.stringify(res));
+			    	$state.go("ambulance_assigned");
+			    },
+				error: function(res) {
+					$state.go('ambulance_not_assigned');
+				}
+			});
+
+			console.log(position);
+		}
+		function showError(error){
+			console.log(error);
+		}
+		// Get the geo-location
+		if (navigator.geolocation)
+	    {
+	        navigator.geolocation.getCurrentPosition(showPosition,showError,
+	          {
+	            enableHighAccuracy : true,
+	            timeout : 10000, // 10s
+	            //maximumAge : 0
+	          }
+	        );
+	    }
+
+	}
+})
+
+.controller('ambulanceController', function($scope, $state, $ionicLoading, $cordovaLocalStorage){
+	$scope.vehicle = JSON.parse($cordovaLocalStorage.getItem('ambulance')) || {};
+
+	$ionicLoading.hide();
+})
+
+.controller('homeController', function($scope, $state, $ionicPopup, $http, $cordovaLocalStorage) {
+	
+	$scope.goToComplaint = function() {
+		$state.go('register');
+	}
+
+	$scope.URL = URL;
+
+	function getComplaints() {
+		$http({
+            method: 'GET',
+            url: URL + '/complaint/recent',
+        })
+        .then(function(res){
+        	$scope.complaints = res.data.data;
+        	console.log($scope.complaints);
+        })
+	}
+
+	setInterval(getComplaints,4000);
 
 	$scope.getName = function() {
 			$ionicPopup.show({
@@ -192,12 +142,6 @@ angular.module('smartzone.controllers', ['ngCordova.plugins.localStorage','ionic
 		        }
 		      ]
 		    });		   
-	}
-
-	$scope.user.name = $cordovaLocalStorage.getItem('username');
-
-	if(!$scope.user.name) {
-		$scope.getName();
 	}
 
 })
