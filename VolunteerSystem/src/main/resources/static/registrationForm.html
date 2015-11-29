@@ -58,7 +58,7 @@
 
     </header>
     <div class="container">
-    <div class="row">
+    <div class="row" style="display:none;" id="applicationForm">
         <div id="registration" class="col-xs-12 col-sm-12">
             <form id="regForm" data-toggle="validator" class="form-horizontal" role="form">
                 <div class="form-group" align="center">
@@ -268,9 +268,9 @@
         </div>
         <div id="confirmation" style="display: none;"><h2>Hi User,<br/>Thanks for registration.<br/>Your registration details will be sent in an email to your registered mail id.<br/></h2><br/>
         <h1>{{volunteer.registrationId}}</h1></div>
-    <div class="row" id="guideLines">
+        </div>
+    <div class="row" id="guideLines" style="display:block;">
         <p>
-        
     <h3 style="color:green;">DOs for BCI Volunteers</h3> 
     <ul style="color:brown; font-size:20px;">
        <li>Every volunteer should be committed to the policies of BCI.</li> 
@@ -298,9 +298,6 @@
             <li>Smoking, chewing tobacco and consumption of alcohol or non-vegetarian food is strictly prohibited within the BCI shelters and in events. </li>
             <li>Volunteers getting into any altercation with any member of the staff or GB member will be terminated from volunteering with immediate effect.</li>
         </ul>
-
-
-        
         </p>
         </br>
           <div class="form-group">
@@ -348,7 +345,7 @@
     function registrationForm(){
     
      document.getElementById("guideLines").style.display="none";
-     document.getElementById("registrationForm").style.display="block";
+     document.getElementById("applicationForm").style.display="block";
 }
     
     </script>
