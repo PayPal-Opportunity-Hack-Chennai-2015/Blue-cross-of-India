@@ -22,7 +22,7 @@ public final class EmailTemplate {
 			+ "\n\nBest Reagrds,\nBlueCross";
 	private static final String INDUCTION_MESSAGE = "\nHi %s,\n\nYour Bluecross volunteer Induction has been scheduled on %s."
 			+ "\n\nBest Reagrds,\nBlueCross";
-	private static final String NEW_REGISTRATION_ADMIN_MESSAGE = "A new volunteer %s has just now registered in the website";
+	private static final String NEW_REGISTRATION_ADMIN_MESSAGE = "A new volunteer %s - %s has registered.";
 	private static final String REGISTRATION_REJECTED_MESSAGE = "\nHi %s,\n\nYour registration has been deferred."
 			+ "\nPlease reregister if interested."
 			+ "\n\nBest Reagrds,\nBlueCross";
@@ -39,8 +39,8 @@ public final class EmailTemplate {
 		return String.format(INDUCTION_MESSAGE, fullName, dateInString);
 	}
 	
-	public static String getNewRegistrationAdminMessage(String fullName) {
-		return String.format(NEW_REGISTRATION_ADMIN_MESSAGE, fullName);
+	public static String getNewRegistrationAdminMessage(String fullName, String registrationId) {
+		return String.format(NEW_REGISTRATION_ADMIN_MESSAGE, fullName, registrationId);
 	}
 	
 	public static String getRejectedMessage(String fullName) {
