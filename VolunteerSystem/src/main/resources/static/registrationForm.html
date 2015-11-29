@@ -89,7 +89,7 @@
                     <label class="control-label col-xs-6 col-sm-2">Gender:</label>
                     <div class="col-xs-6 col-sm-2" ng-model="gender">
                         <label class="radio-inline">
-                                <input type="radio" name="gender" id="inlineRadio1" value="Male" ng-model="gender" ng-checked="checked">Male
+                                <input type="radio" name="gender" id="inlineRadio1" value="Male" ng-model="gender" ng-checked="true">Male
                             </label>
                              <label class="radio-inline">
                                 <input type="radio" name="gender" id="inlineRadio1" ng-model="gender" value="Female">Female
@@ -107,12 +107,12 @@
                 <div class="form-group">
                     <label class="control-label col-xs-6 col-sm-2">City:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                       <input type="text" name="city" class="form-control" value="CHENNAI" disabled/>
+                       <input type="text" name="city" class="form-control" value="CHENNAI" ng-model="city" readonly/>
                     </div>
                 
                     <label class="control-label col-xs-6 col-sm-2">Country:</label>
                     <div class="has-feedback col-xs-6 col-sm-4">
-                         <input type="text" name="country" class="form-control" value="INDIA" disabled/>
+                         <input type="text" name="country" class="form-control" value="INDIA" ng-model="country" readonly/>
                     </div>
                 </div>
                 
@@ -264,7 +264,7 @@
                 
                 <div class="form-group">
                     <div class="has feedback">
-                        <button type="submit" class="btn btn-warning col-xs-6 col-sm-offset-2 col-sm-3">Submit</button>
+                        <button type="submit" class="btn btn-warning col-xs-6 col-sm-offset-2 col-sm-3" ng-submit="volunteer.submitForm()">Submit</button>
                             
                     </div>
                 </div>          
