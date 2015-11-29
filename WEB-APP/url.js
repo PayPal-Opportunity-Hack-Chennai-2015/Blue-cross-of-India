@@ -56,7 +56,7 @@ module.exports = function(express, app) {
 
 	var caseRouter = express.Router();
 	caseRouter.post('/create', upload.single('pic'), complaint.createComplaint);
-
+	caseRouter.get('/recent', complaint.getRecentComplaints);
 	app.use('/complaint', caseRouter);
 
 	// =============================================

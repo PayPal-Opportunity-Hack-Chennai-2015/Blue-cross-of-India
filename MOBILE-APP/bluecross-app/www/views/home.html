@@ -4,12 +4,45 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-      <button on-tap="" class="button icon ion-compose"></button>
+      <button on-tap="goToComplaint()" class="button icon ion-android-camera"></button>
     </ion-nav-buttons>
 
 	<ion-content overflow-scroll="true" animation="slide-left-right" ng-controller="utils">
         
-        <h5>Recent Activities</h5>
+        <h5 class="content-title padding-horizontal">Recent Activities</h5>
+		<div class="card complaint-card registered" ng-repeat="c in complaints">
+        	<h6 class="complaint-card-title">Registered Successfully - <span>1 min ago</span></h6>
+        	<div class="row">
+				<div class="col col-33">
+					<img ng-src="{{URL}}/uploads/{{c.pic}}" />
+				</div>
+				<div class="col">
+					<!--<p><span>Location:</span> Velachery</p>-->
+					<p><span>Registered By:</span> {{c.registerBy}}</p>
+				</div>
+        	</div>
+        </div>
+        <div class="card complaint-card rescued">
+        	<h6 class="complaint-card-title">Rescued Successfully - <span>1 min ago</span></h6>
+        	<div class="row">
+				<div class="col col-33">
+					<img src="http://localhost:3000/uploads/12191943_10153294835046523_5231025611682565174_n.jpg" />
+				</div>
+				<div class="col">
+					<p><span>Location:</span> Velachery</p>
+					<p><span>Registered By:</span> Raghav</p>
+				</div>
+        	</div>
+        </div>
+
+        <div class="card complaint-card registered">
+        	<h6 class="complaint-card-title">Complaint Registered - <span>10 min ago</span></h6>
+        </div>
+
+        <div class="card complaint-card on-progress">
+        	<h6 class="complaint-card-title">Rescue on Progress - <span>20 min ago</span></h6>
+        </div>
+
 
 	</ion-content> 
 

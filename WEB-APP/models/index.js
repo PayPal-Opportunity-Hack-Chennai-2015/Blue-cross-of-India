@@ -23,7 +23,7 @@ var userSchema = mongoose.Schema( {
 var animalRescueSchema = mongoose.Schema({
 
 	name 	 :{ type: String, trim: true },
-	type     :{ type: String, required: true, trim: true},
+	type     :{ type: String, trim: true},
 	location : [],
 	currentLocation: {},
 	state    : [],
@@ -52,6 +52,7 @@ var complaint = mongoose.Schema({
 	registerPhone	: { type: String, required: true, trim: true },
 	complaintStatus : { type: String, required: true, trim: true},
 	comments		: String,
+	pic             : String,
 	timeStamp       : {  date: String, time: String  }
 });
 

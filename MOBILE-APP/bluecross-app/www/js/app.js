@@ -1,5 +1,5 @@
 
-angular.module('bluecross', ['ionic','bluecross.controllers','ngCordova.plugins.localStorage'])
+angular.module('bluecross', ['ionic','bluecross.controllers', 'ngCordova.plugins.localStorage'])
 
 .config(function($stateProvider, $urlRouterProvider) {
         $stateProvider
@@ -9,10 +9,21 @@ angular.module('bluecross', ['ionic','bluecross.controllers','ngCordova.plugins.
                 controller: 'homeController'
             })
 
-            .state('category', {
-                url: '/category/:type',
-                templateUrl: 'views/category.html',
-                controller: 'categoryController'
+            .state('register', {
+                url: '/register',
+                templateUrl: 'views/register.html',
+                controller: 'caseController'
+            })
+
+            .state('ambulance_assigned', {
+                url: '/ambulance_assigned',
+                templateUrl: 'views/ambulance_assigned.html',
+                controller : 'ambulanceController'
+            })
+
+            .state('ambulance_not_assigned', {
+                url: '/ambulance_not_assigned',
+                templateUrl: 'views/ambulance_not_assigned.html'
             })
 
             .state('about', {
@@ -23,6 +34,21 @@ angular.module('bluecross', ['ionic','bluecross.controllers','ngCordova.plugins.
         $urlRouterProvider.otherwise("/home");
 
     })
+
+.directive('file', function () {
+    return {
+        scope: {
+            file: '='
+        },
+        link: function (scope, el, attrs) {
+            el.bind('change', function (event) {
+                var file = event.target.files[0];
+                scope.file = file ? file : undefined;
+                scope.$apply();
+            });
+        }
+    };
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
