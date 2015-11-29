@@ -21,12 +21,15 @@ public class VolunteerService {
 	
 	@Autowired
 	private VolunteerRepository volunteerRepository;
+	
+	private static Long userId = 8000l;
 
     public String getName() {
         return String.valueOf(volunteerRepository.findAll().spliterator().getExactSizeIfKnown());
     }
 	public String save(Volunteer volunteer) {
     	volunteer.setStatus("NEW");
+    	volunteer.setUserId(String.valueOf(userId++));
 		Volunteer savedVolunteer = volunteerRepository.save(volunteer);
 		emailUtil.sendEmail(savedVolunteer.getEmailId(), EmailTemplate.REGISTRATION_ACCEPTED_SUBJECT, 
 				EmailTemplate.getRegistrationAcceptanceMessage(savedVolunteer.getFirstName(), String.valueOf(savedVolunteer.getUserId())));
