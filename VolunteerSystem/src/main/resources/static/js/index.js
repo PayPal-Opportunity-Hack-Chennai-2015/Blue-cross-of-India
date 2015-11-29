@@ -8,7 +8,7 @@
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-            first_name: {
+            firstName: {
                 validators: {
                     stringLenght: {
                         min:2
@@ -19,7 +19,7 @@
                     
                 }
             },
-            last_name: {
+            lastName: {
                 validators: {
                     stringLenght: {
                         min:2
@@ -31,7 +31,7 @@
                 }
             },
              
-            email: {
+            emailId: {
                 validators: {
                     notEmpty: {
                         message: 'Please supply your email address'
@@ -52,19 +52,47 @@
                     }
                 }
             },
-            
-            
-            zip: {
+
+            pincode: {
                 validators: {
+                	numeric: {
+                		message: 'The value is not a number'
+                	},
                     notEmpty: {
                         message: 'Please supply your zip code'
                     },
-                    zipCode: {
-                        
-                        message: 'Please supply a vaild zip code'
+                    stringLength: {
+                        max: 6
                     }
                 }
+            }, 
+            mobileNumber: {
+                validators: {
+                	stringLength: {
+                		max :10
+                	},
+                    notEmpty: {
+                        message: 'Please supply your mobile number'
+                    },
+                }
             },
+            landPhone: {
+                validators: {
+                	stringLength: {
+                		max :10
+                	},
+                }
+            },
+            emergencyNumber : {
+            	validators: {
+                	stringLength: {
+                		max :10
+                	},
+                    notEmpty: {
+                        message: 'Please supply your emergency mobile number'
+                    },
+                }
+            }
             }
         });
         
