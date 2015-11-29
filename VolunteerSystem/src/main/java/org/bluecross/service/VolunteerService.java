@@ -45,16 +45,16 @@ public class VolunteerService {
 	   return (ArrayList<Volunteer>) volunteerRepository.findAll();
 	}
 
-	public void reject(List<String> ids) {
-		updateStatus("REJECTED",ids);
+	public void reject(List<Volunteer> volunteerIds) {
+		updateStatus("REJECTED",volunteerIds);
 		
 	}
 
-	public void updateStatus(String status, List<String> ids) {
-		for(String id:ids){
-			Volunteer volunteer = volunteerRepository.findOne(Long.valueOf(id));
-			volunteer.setStatus(status);
-			volunteerRepository.save(volunteer);
+	public void updateStatus(String status, List<Volunteer> volunteerIds) {
+		for(Volunteer volunteer:volunteerIds){
+			Volunteer updateVolunteer = volunteerRepository.findOne(Long.valueOf(volunteer.getUserId()));
+			updateVolunteer.setStatus(status);
+			volunteerRepository.save(updateVolunteer);
 		}
 	}
 
