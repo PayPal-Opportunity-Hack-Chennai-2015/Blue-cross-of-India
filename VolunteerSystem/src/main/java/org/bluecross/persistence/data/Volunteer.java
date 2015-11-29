@@ -5,109 +5,72 @@ package org.bluecross.persistence.data;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import org.springframework.data.annotation.Id;
 
-/**
- * @author x074134
- *
- */
-@Entity
-@SequenceGenerator(name = "VOLUNTEER_SEQ", sequenceName = "VOLUNTEER_SEQ", allocationSize = 1)
 public class Volunteer {
 
-	@Id
-	@Column(name = "USER_ID")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="VOLUNTEER_SEQ")
-	private Long userId;
+    @Id
+	private String userId;
 
-	@Column(name = "STATUS")
 	private String status;
 
-	@Column(name = "FIRST_NAME")
 	private String firstName;
 
-	@Column(name = "LAST_NAME")
 	private String lastName;
 
-	@Column(name = "GENDER")
 	private String gender;
 
-	@Column(name = "DATE_OF_BIRTH")
-	private Date dateOfBirth;
+	private String dateOfBirth;
 
-	@Column(name = "ADDRESS")
 	private String address;
 
-	@Column(name = "CITY")
 	private String city;
 
-	@Column(name = "COUNTRY")
 	private String country;
 
-	@Column(name = "PINCODE")
 	private String pincode;
 
-	@Column(name = "MOBILE_NUMBER")
 	private String mobileNumber;
 
-	@Column(name = "LAND_PHONE")
 	private String landPhone;
 
-	@Column(name = "EMERGENCY_NUMBER")
 	private String emergencyNumber;
 
-	@Column(name = "RELATION_EMRGNCY_CNTCT")
 	private String relationEmergencyContact;
 
-	@Column(name = "EMAIL_ID")
 	private String emailId;
 
-	@Column(name = "REASON_FOR_VOLUNTEERING")
 	private String reasonForVolunteering;
 
-	@Column(name = "PREVIOUS_EXPERIENCES")
 	private String previousExperiences;
 
-	@Column(name = "AVILABILITY_WEEK_HRS")
 	private String availabilityWeekHours;
 
-	@Column(name = "AVILABLTY_DAYS")
 	private String availabilityDays;
 
-	@Column(name = "PREV_VOLUNTEER_JOBS")
 	private String prevVolunteerJobs;
 
-	@Column(name = "CALL_AT_WORK")
 	private String callAtWork;
 
-	@Column(name = "WORK_NUMBER")
 	private String workNumber;
 
-	@Column(name = "EDUCATIONAL_EXPERIENCE")
 	private String educationalExperience;
 
-	@Column(name = "HOW_YOU_KNOW")
 	private String howYouKnow;
 
-	@Column(name = "ADDITIONAL_INFO")
 	private String additionalInfo;
 
 	/**
 	 * @return the userId
 	 */
-	public Long getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
 	/**
 	 * @param userId the userId to set
 	 */
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -174,7 +137,7 @@ public class Volunteer {
 	/**
 	 * @return the dateOfBirth
 	 */
-	public Date getDateOfBirth() {
+	public String getDateOfBirth() {
 		return dateOfBirth;
 	}
 
@@ -182,7 +145,7 @@ public class Volunteer {
 	 * @param dateOfBirth
 	 *            the dateOfBirth to set
 	 */
-	public void setDateOfBirth(Date dateOfBirth) {
+	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
