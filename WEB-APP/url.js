@@ -4,6 +4,7 @@ var complaint   = require("./routes/caseController");
 var animal      = require("./routes/animalController.js");
 var ambulance   = require("./routes/ambulanceController.js");
 var report      = require("./routes/reportController.js");
+var volunteer	= require("./routes/volunteerController.js");
 
 var path        = require('path');
 var multer      = require('multer');
@@ -87,8 +88,22 @@ module.exports = function(express, app) {
 	// =============================================
 
 	var ReportRouter = express.Router();
-	ReportRouter.get('/date', report.getReportForDate);
-
+	ReportRouter.get('/date', session.isAuthenticated, report.getReportForDate);
+	ReportRouter.get('/today', session.isAuthenticated, report.getComplaints);
 	app.use('/report', ReportRouter);
+
+	// =============================================
+	// ========== VOLUNTEER ROUTER =================
+	// =============================================
+
+	var VolunteerRouter = express.Router();
+	
+	VolunteerRouter.post('/createVolunteer', session.isAuthenticated, volunteer.createVolunteer);
+	VolunteerRouter.put('/updateVolunteer', session.isAuthenticated, volunteer.updateVolunteer);
+	VolunteerRouter.delete('/deleteVolunteer', session.isAuthenticated, volunteer.deleteVolunteer);
+	VolunteerRouter.get('/getVolunteer',session.isAuthenticated, volunteer.getVolunteer);
+	VolunteerRouter.get('/getAllVolunteer',session.isAuthenticated, volunteer.getAllVolunteer);
+	
+	app.use('/volunteer',VolunteerRouter);
 }
 

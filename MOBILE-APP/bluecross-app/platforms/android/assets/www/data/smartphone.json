@@ -1,0 +1,104 @@
+[
+  {
+    name: "Apple iPhone 6",
+    manufacturer: "Apple",
+    price: "40000",
+    size: "5-inch",
+    camera: "8 MP",
+    OS: "iOS",
+    processor: "A8",
+    memory: "16 GB"
+    ram: "1 GB",
+    image: "img/smartphone/iphone6.jpg"
+  },
+  
+  {
+    name: "Apple iPhone 5S",
+    manufacturer: "Apple",
+    price: "29000",
+    size: "4-inch",
+    camera: "8 MP",
+    OS: "iOS",
+    processor: "A7",
+    memory: "16 GB",
+    ram: "1 GB",
+    image: "img/smartphone/iphone5s.jpg"
+  },
+  
+  {
+    name: "Google Nexus 5",
+    manufacturer: "LG",
+    price: "20000",
+    size: "5-inch",
+    camera: "8 MP",
+    OS: "Android",
+    processor: "2.3 GHz Snapdragon 800",
+    memory: "16 GB",
+    ram: "2 GB",
+    image: "img/smartphone/nexus5.jpg"
+  },
+  
+  {
+    name: "HTC Desire 620G",
+    manufacturer: "HTC",
+    price: "11000",
+    size: "5-inch",
+    camera: "8 MP",
+    OS: "Android",
+    processor: "1.7 GHz MediaTek ",
+    memory: "8 GB",
+    ram: "1 GB",
+    image: "img/smartphone/htc620g.jpg"
+  },
+  
+  {
+    name: "Asus Zenfone 5",
+    manufacturer: "Asus",
+    price: "14000",
+    size: "5-inch",
+    camera: "8 MP",
+    OS: "Android",
+    processor: "1.7 GHz Intel Atom ",
+    memory: "6 GB",
+    ram: "2 GB",
+    image: "img/smartphone/asus5.jpg"
+  },
+  
+  {
+    name: "Redmi 2 Prime 4G",
+    manufacturer: "Mi",
+    price: "7000",
+    size: "5-inch",
+    camera: "8 MP",
+    OS: "Android",
+    processor: "1.2 GHz Snapdragon 410 ",
+    memory: "16 GB",
+    ram: "2 GB",
+    image: "img/smartphone/redmi2prime.jpg"
+  },
+  
+  {
+    name: "OnePlus One",
+    manufacturer: "OnePlus",
+    price: "21000",
+    size: "5-inch",
+    camera: "13 MP",
+    OS: "Android",
+    processor: "2.5 GHz Snapdragon 801 ",
+    memory: "32 GB",
+    ram: "3 GB",
+    image: "img/smartphone/oneplusone.jpg"
+  },
+  {
+    name: "Motorola Moto G3",
+    manufacturer: "Motorola",
+    price: "13000",
+    size: "5-inch",
+    camera: "13 MP",
+    OS: "Android",
+    processor: "1.4 GHz Snapdragon 410 ",
+    memory: "16 GB",
+    ram: "2 GB",
+    image: "img/smartphone/motog.jpg"
+  }
+]

@@ -52,7 +52,19 @@ var complaint = mongoose.Schema({
 	registerPhone	: { type: String, required: true, trim: true },
 	complaintStatus : { type: String, required: true, trim: true},
 	comments		: String,
-	timeStamp       : String
+	timeStamp       : {  date: String, time: String  }
+});
+
+var volunteer = mongoose.Schema({
+	firstname  		: { type: String, required: true, trim: true },
+	lastName		: { type: String, required: true, trim: true  },
+	email			: { type: String, required: true, trim: true },
+	phone			: { type: String, required: true, trim: true, index: { unique: true } },
+	address			: { type: String, trim: true},
+	city			: { type: String, trim: true},
+	state       	: { type: String, trim: true},
+	country			: { type: String, trim: true},
+	pincode			: { type: String, trim: true}
 });
 
 module.exports = {
@@ -60,5 +72,6 @@ module.exports = {
 	User 			: mongoose.model('User', userSchema),
 	AnimalRescue  	: mongoose.model('AnimalRescue', animalRescueSchema),
 	Ambulance 		: mongoose.model('Ambulance', ambulance),
-	Complaint       : mongoose.model('Complaint', complaint)
+	Complaint       : mongoose.model('Complaint', complaint),
+	Volunteer		: mongoose.model('Volunteer', volunteer)
 }

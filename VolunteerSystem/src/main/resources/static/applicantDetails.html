@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Responsive Table with Bootstrap</title>
+    
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+function display(param){
+    
+    document.getElementById("parent_title").innerHTML=param;
+    if(param === "Applicants for Interview"){
+        document.getElementById("inductionDetails").style.display="none";
+        document.getElementById("logo").style.display="none";
+        document.getElementById("contentArea").style.display="block";
+        document.getElementById("interviewDetails").style.display="block";
+    }
+    else{
+        document.getElementById("inductionDetails").style.display="block";
+        document.getElementById("contentArea").style.display="block";
+        document.getElementById("logo").style.display="none";
+        document.getElementById("interviewDetails").style.display="none";
+    }
+}
+      </script>
+  </head>
+
+  <body>
+<div class="container">
+    <div class="jumbotron">
+  <h1 style="color:#6cacf0;}">Blue Cross of India</h1>
+  <p>The world belongs as much to
+animals as to humans. It is up to 
+humans to ensure that animals are 
+treated with respect, kindness and 
+dignity. Also, healthy animals
+benefit the society and economy</p>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" id="parent_title">Choose the applicants
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li><a href="javascript:display('Applicants for Interview');">Applicants for Interview</a></li>   
+      <li><a href="javascript:display('Applicants for Induction');">Applicants for Induction</a></li>
+                </ul>
+    </div>
+</div>
+<div id="logo" style="display:block;">
+    <img src="img/blue_cross_logo.jpg">
+</div>
+<div id="contentArea" style="display:none">
+  <div id="interviewDetails">
+  <div class="row">
+    <div class="col-xs-12">
+        <table class="table table-responsive table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Country</th>
+              <th>Languages</th>
+              <th>Population</th>
+              <th>Median Age</th>
+              <th>Area (Km²)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Argentina</td>
+              <td>Spanish (official), English, Italian, German, French</td>
+              <td>41,803,125</td>
+              <td>31.3</td>
+              <td>2,780,387</td>
+            </tr>
+            <tr>
+              <td>Australia</td>
+              <td>English 79%, native and other languages</td>
+              <td>23,630,169</td>
+              <td>37.3</td>
+              <td>7,739,983</td>
+            </tr>
+            <tr>
+              <td>Greece</td>
+              <td>Greek 99% (official), English, French</td>
+              <td>11,128,404</td>
+              <td>43.2</td>
+              <td>131,956</td>
+            </tr>
+            <tr>
+              <td>Luxembourg</td>
+              <td>Luxermbourgish (national) French, German (both administrative)</td>
+              <td>536,761</td>
+              <td>39.1</td>
+              <td>2,586</td>
+            </tr>
+            <tr>
+              <td>Russia</td>
+              <td>Russian, others</td>
+              <td>142,467,651</td>
+              <td>38.4</td>
+              <td>17,076,310</td>
+            </tr>
+            <tr>
+              <td>Swedeneeeeee</td>
+              <td>Swedish, small Sami- and Finnish-speaking minorities</td>
+              <td>9,631,261</td>
+              <td>41.1</td>
+              <td>449,954</td>
+            </tr>
+          </tbody>
+        </table>
+            </div>
+        </div>
+      </div>
+      <div id="inductionDetails">
+  <div class="row">
+    <div class="col-xs-12">
+        <table class="table  table-responsive table-bordered table-hover">
+          <thead>
+            <tr>
+              <th>Country</th>
+              <th>Languages</th>
+              <th>Population</th>
+              <th>Median Age</th>
+              <th>Area (Km²)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Argentina</td>
+              <td>Spanish (official), English, Italian, German, French</td>
+              <td>41,803,125</td>
+              <td>31.3</td>
+              <td>2,780,387</td>
+            </tr>
+            <tr>
+              <td>Australia</td>
+              <td>English 79%, native and other languages</td>
+              <td>23,630,169</td>
+              <td>37.3</td>
+              <td>7,739,983</td>
+            </tr>
+              <tr>
+              <td>Argentina</td>
+              <td>Spanish (official), English, Italian, German, French</td>
+              <td>41,803,125</td>
+              <td>31.3</td>
+              <td>2,780,387</td>
+            </tr>
+            <tr>
+              <td>Australia</td>
+              <td>English 79%, native and other languages</td>
+              <td>23,630,169</td>
+              <td>37.3</td>
+              <td>7,739,983</td>
+            </tr>
+          </tbody>
+        </table>
+            </div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>

@@ -33,6 +33,10 @@ exports.createAmbulance = function(req,res){
 exports.updateAmbulance = function(req,res){
 	
 	var amb = {};
+
+	var d = new Date();
+	
+	var timestamp = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
 	
 	if(!_.isEmpty(req.query)){
 		amb = req.query;
@@ -63,7 +67,8 @@ exports.updateAmbulance = function(req,res){
 					ambulan.isEmergency=amb.isEmergency;
 				}
 				if(amb.currentLocation){
-					ambulan.location.push({"lang":amb.currentLocation,"timeStamp":new Date()});
+
+					ambulan.location.push({"lang":amb.currentLocation,"timeStamp":  timestamp  });
 					ambulan.currentLocation=amb.currentLocation;
 				}
 				ambulan.save();

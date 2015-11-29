@@ -1,0 +1,25 @@
+<ion-view view-title="Home" cache-view="true" enable-menu-with-back-views="false">
+    <ion-nav-buttons side="left">
+      <button menu-toggle="left" class="button icon ion-navicon"></button>
+    </ion-nav-buttons>
+
+	<ion-content overflow-scroll="true" animation="slide-left-right" ng-controller="utils">
+        
+        <div class="card card--expand" ng-click="go('/category/computers')">
+            <div class="item item-divider category-item" style="background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8) ), url('img/computer.jpg') center center;">
+                <h2>Computers</h2>
+            </div>
+        </div>
+        <div class="card card--expand" ng-click="go('/category/smartphone')">
+            <div class="item item-divider category-item" style="background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8) ), url('img/smartphone.jpg') center center;">
+                <h2>Smartphones</h2>
+            </div>
+        </div>
+        <div class="card card--expand" ng-click="go('category/books')">
+            <div class="item item-divider category-item" style="background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8) ), url('img/books.jpg') center center; ">
+                <h2>Books</h2>
+            </div>
+        </div>
+	</ion-content> 
+
+</ion-view>

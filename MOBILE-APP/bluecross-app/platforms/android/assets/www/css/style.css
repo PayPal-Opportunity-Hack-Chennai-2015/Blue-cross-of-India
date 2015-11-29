@@ -1,0 +1,144 @@
+
+
+html,body {
+	font-family: "Roboto",sans-serif;
+}
+
+.bar-subheader {
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.44);
+	-webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.44);
+}
+
+a.item {
+	padding: 10px !important;
+}
+
+a.item i {
+	padding-right: 30px !important;
+} 
+
+.side-menu {
+	padding-top: 0 !important;
+}
+
+.side-menu-header {
+	background: #FF4081 url('../img/header.jpg');
+	background-size: cover;
+  	height: 200px;
+}
+
+.popup-container .popup {
+	background-color: #FFF !important;
+}
+
+.popup-container input {
+	border-bottom: 1px solid #CCC;
+}
+
+.category-item {
+	background-size: cover !important; 
+	color: white;
+	height: 150px !important;
+	text-decoration: none !important;
+}
+
+.card h2 {
+    text-decoration: none !important;
+}
+
+.side-menu a {
+  padding: 20px !important;
+}
+
+.card h2 {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+}
+
+swipe-card {
+  display: none;
+  position: fixed;
+  -webkit-transform: scale(1,1);
+  left: 50%;
+  top: 40%;
+  width: 300px;
+  height: 360px;
+  margin-left: -150px;
+  margin-top: -150px;
+  box-sizing: border-box;
+  background-color: #FFF;
+  box-shadow: 0 0 25px rgba(2, 2, 2, 0.1);
+  border-radius: 0px;
+  overflow: hidden;
+  -webkit-animation-fill-mode: forwards;
+}
+
+swipe-card .title {
+  padding: 15px 10px;
+  line-height: 30px;
+  color: #444;
+}
+swipe-card .image {
+  overflow: hidden;
+  max-height: 210px;
+}
+swipe-card .button {
+  border: none;
+}
+swipe-card .image img {
+  width: 100%;
+  border-radius: 0px 0px 4px 4px;
+}
+
+#start-card {
+  color: #fff;
+  background-color: #30BD8A;
+  line-height: 300px;
+  word-wrap: break-word;
+  border: 6px solid #4CD68E;
+  text-align: center;
+}
+#start-card span {
+  display: inline-block;
+  line-height: 40px;
+  width: 200px;
+  font-size: 30px;
+  vertical-align: middle;
+}
+
+#footer .button {
+  color: #fff;
+}
+
+@-webkit-keyframes bounceIn {
+  0% {
+    -webkit-transform: scale(0,0);
+  }
+  70% {
+    -webkit-transform: scale(1.2,1.2);
+  }
+  100% {
+    -webkit-transform: scale(1,1);
+  }
+}
+
+swipe-card.pop-in-start {
+  -webkit-transform: scale(0,0);
+}
+swipe-card.pop-in {
+  -webkit-animation: bounceIn 1s ease-out;
+}
+
+.lighten {
+  opacity: 0.2;
+}
+.card {
+	margin: 5px !important;
+}
+
+label .item {
+  border-bottom: 1px solid #CCC;
+}
