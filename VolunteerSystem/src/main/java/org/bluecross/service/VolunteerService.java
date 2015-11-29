@@ -22,9 +22,6 @@ public class VolunteerService {
 	@Autowired
 	private VolunteerRepository volunteerRepository;
 
-    @Autowired
-    private VolunteerRepository volunteerRepository;
-
     public String getName() {
         return String.valueOf(volunteerRepository.findAll().spliterator().getExactSizeIfKnown());
     }
@@ -34,10 +31,6 @@ public class VolunteerService {
 				EmailTemplate.getRegistrationAcceptanceMessage(savedVolunteer.getFirstName(), String.valueOf(savedVolunteer.getUserId())));
 		return String.valueOf(savedVolunteer.getUserId());
 	}
-
-    public String save(Volunteer volunteer) {
-        return String.valueOf(volunteerRepository.save(volunteer).getUserId());
-    }
 
     public List<Volunteer> getByStatus(String status) {
         return volunteerRepository.findByStatus(status);
