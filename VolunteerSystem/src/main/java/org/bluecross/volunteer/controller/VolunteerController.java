@@ -31,7 +31,8 @@ public class VolunteerController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String save(@RequestBody Volunteer volunteer) {
+    public String save(@ModelAttribute Volunteer volunteer) {
+    	volunteer.setStatus("NEW");
         return volunteerService.save(volunteer);
     }
 

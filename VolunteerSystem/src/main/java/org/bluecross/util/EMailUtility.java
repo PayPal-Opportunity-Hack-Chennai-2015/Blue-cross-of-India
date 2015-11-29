@@ -1,11 +1,9 @@
 package org.bluecross.util;
 
-import java.util.Properties;
-
 import javax.inject.Inject;
+import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -42,11 +40,12 @@ public class EMailUtility {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailId));
             message.setSubject(subject);
             message.setText(body);
+            message.setFrom(new InternetAddress("do-not-reply@bluecross.org"));
             Transport.send(message);
             LOGGER.info("Successfully sent an email to " + emailId);
         }
         catch (MessagingException e) {
-            LOGGER.error("Exception occured while sending an email: " + e.getMessage());
+            LOGGER.error("Exception occured while sending an email: " + e);
         }
     }
 }
