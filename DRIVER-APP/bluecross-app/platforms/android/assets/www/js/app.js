@@ -9,23 +9,6 @@ angular.module('bluecross', ['ionic','bluecross.controllers', 'ngCordova.plugins
                 controller: 'homeController'
             })
 
-            .state('register', {
-                url: '/register',
-                templateUrl: 'views/register.html',
-                controller: 'caseController'
-            })
-
-            .state('ambulance_assigned', {
-                url: '/ambulance_assigned',
-                templateUrl: 'views/ambulance_assigned.html',
-                controller : 'ambulanceController'
-            })
-
-            .state('ambulance_not_assigned', {
-                url: '/ambulance_not_assigned',
-                templateUrl: 'views/ambulance_not_assigned.html'
-            })
-
             .state('about', {
                 url: '/about',
                 templateUrl: 'views/about.html'

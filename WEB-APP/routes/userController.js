@@ -1,3 +1,8 @@
+/**
+ * @author Raghav
+ *
+ */
+
 var User     = require("../models").User;
 var bcrypt   = require('bcrypt-nodejs');
 
@@ -13,6 +18,7 @@ function validPassword (submitted_password, db_password) {
 
 
 exports.signIn = function (req,res,next) {
+	
 	var email = req.query.email || req.body.email || "";
 	var password = req.query.password || req.body.password || "";
 
@@ -29,7 +35,7 @@ exports.signIn = function (req,res,next) {
 				else {
 					res.status(401);
 					res.send({
-						status: "error",
+						status: "Error",
 						msg   : "Invalid Username / Password"
 					});
 				}
@@ -37,7 +43,7 @@ exports.signIn = function (req,res,next) {
 			else {
 				res.status(401);
 				res.send({
-					status: "error",
+					status: "Error",
 					msg   : "User not registered"
 				});
 			}
@@ -47,7 +53,7 @@ exports.signIn = function (req,res,next) {
 	else {
 		res.status(400);
 		res.send({
-			status: "error",
+			status: "Error",
 			msg   : "Missing Parameters"
 		});
 	}
@@ -55,13 +61,27 @@ exports.signIn = function (req,res,next) {
 
 exports.createAccount = function(req,res) {
 
-	var data = req.body;
+	var data = req.body || req.query;
+	// Generate hashed password
 	data.password = generateHash(data.password);
-	console.log(data)
 
 	User.create(data, function (err, user) {
-	  if (err) throw err;
-	  console.log("USER CREARTED SUCCESSFULLY")
+		if (err) {
+		  throw err;
+		}
+
+		if(user) {
+		  res.status(200);
+		  res.send(user);
+		}
+		else {
+		  res.status(500);
+		  res.send({
+		  	status: "Error",
+		  	msg   : "Error in creating new user"
+		  });
+		} 
+	  
 	});
 }
 

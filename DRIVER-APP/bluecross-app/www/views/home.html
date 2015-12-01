@@ -3,9 +3,9 @@
       <button menu-toggle="left" class="button icon ion-navicon"></button>
     </ion-nav-buttons>
 
-	<ion-content overflow-scroll="true" animation="slide-left-right" ng-controller="utils">
+	<ion-content overflow-scroll="true" animation="slide-left-right" ng-controller="utils" style="background:url(img/12208786_954849421261473_2667200621557295851_n.jpg) !important; background-size:contain !important">
         
-        <h5 class="content-title padding-horizontal">Pickups Assigned</h5>
+        <h5 class="content-title padding-horizontal" style="color:#FFF !important">Pickups Assigned</h5>
 
         <div class="card" ng-if="isRideAssigned">
             <h6 class="complaint-card-title">Address</h6>
@@ -23,6 +23,11 @@
             <div ng-if="isRideAssigned">
                 <div id="googleMaps" style="width:350px;height:380px;"></div>
             </div>
+            
+        </div>
+
+        <div class="card" ng-hide="!isRideAssigned">
+
             
         </div>
 

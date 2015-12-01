@@ -8,12 +8,13 @@ var volunteer	= require("./routes/volunteerController.js");
 
 var path        = require('path');
 var multer      = require('multer');
-var upload      = multer({ dest: path.join(__dirname, 'static/uploads')  })
+var upload      = multer({ dest: path.join(__dirname, 'static/uploads')  });
+
 
 var redirectAuth = function(req,res, next) {
-	if(! (req.body.token || req.query.token || req.headers['x-access-token'])  ) 
-		return next()
-
+	if(! (req.body.token || req.query.token || req.headers['x-access-token'])  )  {
+		return next();
+	}		
 	res.status(403);
 	res.json({ "error": "Forbidden Request"  });
 }
@@ -54,9 +55,13 @@ module.exports = function(express, app) {
 	// ========== COMPLAINT ROUTER =================
 	// =============================================
 
+
+	indexRouter.get('/ping', function(req,res) {
+		res.send({ 
 	var caseRouter = express.Router();
 	caseRouter.post('/create', upload.single('pic'), complaint.createComplaint);
 	caseRouter.get('/recent', complaint.getRecentComplaints);
+
 	app.use('/complaint', caseRouter);
 
 	// =============================================
@@ -89,7 +94,8 @@ module.exports = function(express, app) {
 
 	var ReportRouter = express.Router();
 	ReportRouter.get('/date', session.isAuthenticated, report.getReportForDate);
-	ReportRouter.get('/today', session.isAuthenticated, report.getComplaints);
+	ReportRouter.get('/today',session.isAuthenticated, report.getComplaints);
+	
 	app.use('/report', ReportRouter);
 
 	// =============================================

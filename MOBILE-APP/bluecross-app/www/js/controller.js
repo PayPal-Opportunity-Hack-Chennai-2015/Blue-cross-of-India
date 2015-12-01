@@ -1,7 +1,7 @@
 /* global angular, document, window */
 'use strict';
 
-var URL = "http://localhost:3000";
+var URL = "http://192.168.112.97:3000";
 
 angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 
@@ -79,7 +79,7 @@ angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 			console.log(error);
 		}
 		// Get the geo-location
-		if (navigator.geolocation)
+		if (!_.isEmpty(navigator.geolocation))
 	    {
 	        navigator.geolocation.getCurrentPosition(showPosition,showError,
 	          {
@@ -88,6 +88,8 @@ angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 	            //maximumAge : 0
 	          }
 	        );
+	    } else {
+	    	console.log("UNABLE TO GET GEOLOCATION");
 	    }
 
 	}

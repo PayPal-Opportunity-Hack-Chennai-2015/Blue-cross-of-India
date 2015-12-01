@@ -1,6 +1,8 @@
 /*
-* Session Handler is responsible for authentication of token from redis
-* and also creating new tokens
+* @author Raghav
+*
+* @desc Session Handler is responsible for authentication of token from redis and also creating new tokens
+*
 */
 
 var redis  = require('redis').createClient();

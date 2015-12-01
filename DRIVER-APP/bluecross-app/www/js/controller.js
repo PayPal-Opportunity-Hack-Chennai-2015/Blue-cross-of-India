@@ -1,9 +1,9 @@
 /* global angular, document, window */
 'use strict';
 
-var URL = "http://localhost:3000";
+var URL = "http://192.168.112.97:3000";
 
-var DRIVER_REG_NO = "565a9b8019693e834cbb8710";
+var DRIVER_REG_NO = "565ae51db039c3b227b2cf35";
 
 angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 
