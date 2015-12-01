@@ -6,6 +6,7 @@ Rescue a stray animal by building an interactive multi-channel system that will 
 
 ![alt tag](SCREENSHOTS/home.png?raw=true)
 ![alt tag](SCREENSHOTS/register.png?raw=true)
+![alt tag](SCREENSHOTS/ambulance_assigned.png?raw=true)
 
 # Building 
 
