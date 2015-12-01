@@ -1,7 +1,9 @@
 /* global angular, document, window */
 'use strict';
 
-var URL = "http://localhost:3000";
+var URL = "http://192.168.112.97:3000";
+
+var DRIVER_REG_NO = "565ae51db039c3b227b2cf35";
 
 angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 
@@ -19,129 +21,90 @@ angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 	
 })
 
-.controller('caseController', function($scope, $state, $http, $ionicLoading, $cordovaLocalStorage){
-
-	$scope.formData = {};
-
-	function readURL(input) {
-
-	    if (input.files && input.files[0]) {
-	        var reader = new FileReader();
-
-	        reader.onload = function (e) {
-	            $('#img_preview').attr('src', e.target.result);
-	        }
-
-	        reader.readAsDataURL(input.files[0]);
-	    }
-	}
-
-	$("#file").change(function(){
-	    readURL(this);
-	});
-
-	$scope.openDialog = function() {
-		ionic.trigger('click', { target: document.getElementById('file') });
-	}
-
-	$scope.register = function() {
-
-		$ionicLoading.show();
-
-		var formData = new FormData();
-		formData.append("register_by", $scope.formData.registerBy);
-		formData.append("registerEmail", $scope.formData.registerEmail);
-		formData.append("registerPhone", $scope.formData.registerPhone);
-		formData.append("pic", $("#file")[0].files[0]);
-
-		function showPosition(position){
-
-			formData.append("animal_location", position.coords.latitude + "," + position.coords.longitude);
-			$.ajax({
-				url: URL + "/complaint/create",
-				data: formData,
-				cache: false,
-			    contentType: false,
-			    processData: false,
-			    type: 'POST',
-			    success: function(res){
-			    	$cordovaLocalStorage.setItem('ambulance',JSON.stringify(res));
-			    	$state.go("ambulance_assigned");
-			    },
-				error: function(res) {
-					$state.go('ambulance_not_assigned');
-				}
-			});
-
-			console.log(position);
-		}
-		function showError(error){
-			console.log(error);
-		}
-		// Get the geo-location
-		if (navigator.geolocation)
-	    {
-	        navigator.geolocation.getCurrentPosition(showPosition,showError,
-	          {
-	            enableHighAccuracy : true,
-	            timeout : 10000, // 10s
-	            //maximumAge : 0
-	          }
-	        );
-	    }
-
-	}
-})
-
-.controller('ambulanceController', function($scope, $state, $ionicLoading, $cordovaLocalStorage){
-	$scope.vehicle = JSON.parse($cordovaLocalStorage.getItem('ambulance')) || {};
-
-	$ionicLoading.hide();
-})
-
 .controller('homeController', function($scope, $state, $ionicPopup, $http, $cordovaLocalStorage) {
 	
-	$scope.goToComplaint = function() {
-		$state.go('register');
-	}
+	$scope.isRideAssigned = false;
 
 	$scope.URL = URL;
 
-	function getComplaints() {
+	$scope.ambulanceData = {};
+
+	$scope.destinationAddress = "";
+
+	function loadMaps() {
+
+		var myCenter=new google.maps.LatLng($scope.ambulanceData.assignedToOrdinate.lat, $scope.ambulanceData.assignedToOrdinate.lon);
+		function initialize()
+		{	
+			console.log(myCenter)
+			var mapProp = {
+			  center:myCenter,
+			  zoom:13,
+			  mapTypeId:google.maps.MapTypeId.ROADMAP
+			};
+
+			var map = new google.maps.Map(document.getElementById("googleMaps"),mapProp);
+
+			var marker = new google.maps.Marker({
+			  position:myCenter
+			});
+
+			marker.setMap(map);
+
+			var infowindow = new google.maps.InfoWindow({
+			  content: $scope.destinationAddress
+			});
+
+			infowindow.open(map,marker);
+
+		}
+
+		setTimeout(function () {
+			initialize();
+		},2000)
+
+
+	}
+
+	function loadAddress () {
+		console.log("LOADING ADDRESS")
 		$http({
-            method: 'GET',
-            url: URL + '/complaint/recent',
-        })
-        .then(function(res){
-        	$scope.complaints = res.data.data;
-        	console.log($scope.complaints);
-        })
+			method: 'GET',
+			url: "http://maps.googleapis.com/maps/api/geocode/json?latlng="+$scope.ambulanceData.assignedToOrdinate.lat+","+$scope.ambulanceData.assignedToOrdinate.lon+"&sensor=true"
+		})
+		.then(function(res) {
+			$scope.destinationAddress = res.data.results[0].formatted_address;
+		})
 	}
 
-	setInterval(getComplaints,4000);
+	function getAmbulanceInfo() {
 
-	$scope.getName = function() {
-			$ionicPopup.show({
-		      template: '<input type="text" ng-model="user.name">',
-		      title: 'Hi. Whats your name?',
-		      subTitle: 'Please use normal things',
-		      scope: $scope,
-		      buttons: [
-		        {
-		          text: 'Save',
-		          type: 'button-positive',
-		          onTap: function(e) {
-		            if (!$scope.user.name) {
-		              //don't allow the user to close unless he enters name
-		              e.preventDefault();
-		            } else {
-		            	console.log("SET :"+$scope.user.name)
-		              return $cordovaLocalStorage.setItem('username',$scope.user.name);
-		            }
-		          }
-		        }
-		      ]
-		    });		   
+		if(! $scope.isRideAssigned) {
+
+			$http({
+	            method: 'GET',
+	            url: URL + '/ambulance/getAmbulance',
+	            params: {
+	            	_id: DRIVER_REG_NO
+	            }
+	        })
+	        .then(function(res){
+	           	$scope.ambulanceData = res.data;
+	           	if( $scope.ambulanceData.assignedTo ) {
+	           		console.log("RETRIEVING ADDRESS")
+	           		$scope.destinationAddress = "RETRIEVING ADDRESS..";
+	           		$scope.isRideAssigned = true;
+	           		loadMaps();
+	           		loadAddress();
+	           	}
+	        })
+
+		}
+
+		
 	}
+
+
+	setInterval(getAmbulanceInfo,1000);
 
 })

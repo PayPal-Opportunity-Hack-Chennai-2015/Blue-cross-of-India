@@ -1,3 +1,8 @@
+/**
+ * @author Raghav
+ *
+ */
+
 var Complaint     = require("../models").Complaint;
 var Animal        = require("../models").AnimalRescue;
 var Ambulance     = require("../models").Ambulance;
@@ -6,7 +11,6 @@ var path          = require('path');
 var _             = require('underscore');
 
 exports.createComplaint = function (req,res) {
-
 
 	var complaint = {};
 	var animal    = {};
@@ -20,7 +24,9 @@ exports.createComplaint = function (req,res) {
 
 	animal.name     = "";
 	animal.type     = req.body.animal_type || req.query.animal_type || "";
+
 	var temp_loc    = req.body.animal_location.split(",");
+
 	animal.currentLocation = {
 		lat: temp_loc[0],
 		lon: temp_loc[1]
@@ -28,6 +34,7 @@ exports.createComplaint = function (req,res) {
 
 	animal.doctor     = "";
 	animal.assignedTo = "";
+
 	if(_.isEmpty(req.file)) {
 		animal.pic = "";
 	}
@@ -35,43 +42,40 @@ exports.createComplaint = function (req,res) {
 		animal.pic = req.file.filename;
 	}
 
-	complaint.registerBy   = req.body.register_by || req.query.register_by || "";
-	complaint.registerEmail = req.body.registerEmail || req.query.registerEmail || "";
-	complaint.registerPhone = req.body.registerPhone || req.query.registerPhone || "";
+	complaint.registerBy      = req.body.register_by || req.query.register_by || "";
+	complaint.registerEmail   = req.body.registerEmail || req.query.registerEmail || "";
+	complaint.registerPhone   = req.body.registerPhone || req.query.registerPhone || "";
 	complaint.complaintStatus = "REGISTERED";
-	complaint.pic = animal.pic;
-	complaint.timeStamp = new Date();
-
-	console.log("ANIMAL:"+ JSON.stringify(animal));
+	complaint.pic             = animal.pic;
+	complaint.timeStamp       = {  date: timestamp.date, time: timestamp.time  };
 
 	var _animal, _complaint = {}
 
 	async.series([
 
 		function(callback) {
-			// Create a new model for the animal
+			// Create a new document for the animal
 			Animal(animal).save(function(err, d_animal) {
-				if(err) console.log("ERROR IN CREATING ANIMAL")
+				if(err) console.log("ERROR IN CREATING ANIMAL: " + err);
 				_animal = d_animal;
 				callback(null, "DONE");
 			});
 		},
 
 		function(callback) {
-			// Create a new model for the complaint
+
+			// Create a new document for the complaint
 			complaint.animalId  = _animal._id;
 			complaint.timeStamp = timestamp;
 
 			Complaint(complaint).save(function(err, d_complaint) {
-				if(err) console.log(err);
+				if(err) console.log("ERROR IN CREATING COMPLAINT: " + err);
 				_complaint = d_complaint;
-				console.log("COMPLAINT CREATED")
 				callback(null, "DONE");
 			});
 		},
 
 		function(callback) {
-			var maxDistance = 50/6371;
 			// Once the complaint has been created, assign the nearest ambulance
 			Ambulance.find({
 				currentLocation: {
@@ -82,16 +86,18 @@ exports.createComplaint = function (req,res) {
 			.limit(1)
 
 			.exec(function(err, ambulance){
-				if(err) console.log(err);
+				if(err) console.log("ERROR IN ASSIGNING AMBULANCE: " + err);
 				if(ambulance.length > 0) {
 					Ambulance.findById(ambulance[0]._id, function(err, n_ambulance){
 						if(err) throw err;
-						n_ambulance.assignedTo = _complaint._id;
-						n_ambulance.assignedToOrdinate = {};
-						n_ambulance.assignedToOrdinate.lat = animal.currentLocation.lat;
-						n_ambulance.assignedToOrdinate.lon = animal.currentLocation.lon;
+						n_ambulance.assignedTo         = _complaint._id;
+						n_ambulance.assignedToOrdinate = {
+
+							lat: animal.currentLocation.lat,
+							lon: animal.currentLocation.lon
+						};
 						n_ambulance.save();
-						console.log("AMBULANCE ASSIGNED")
+						console.log("AMBULANCE ASSIGNED SUCCESSFULLY");
 						callback(null, n_ambulance);
 					});	
 				}
@@ -105,12 +111,12 @@ exports.createComplaint = function (req,res) {
 
 		], function(err, _ambulance){
 			if(err) {
-				res.status(400);
-				res.send({ error: "No Ambulance Available"})
+				res.status(200);
+				res.send({ status: "unavailable", msg: "No Ambulance Available"})
 			}
 			else {
 				res.status(200);
-				res.send(_ambulance[2]);
+				res.send({ status: "assigned", data: _ambulance[2] });
 			}	
 			
 	});
@@ -120,7 +126,7 @@ exports.getRecentComplaints = function(req,res) {
 	Complaint.find({}, function(err,complaints) {
 			res.status(200);
 			res.send({
-				status: "success",
+				status: "Success",
 				data  : complaints.reverse()
 			});
 		});
@@ -132,7 +138,7 @@ exports.getComplaintDetails = function(req,res) {
 		Complaint.findById(complaintId, function(err,complaint) {
 			res.status(200);
 			res.send({
-				status: "success",
+				status: "Success",
 				data  : complaint
 			});
 		});
@@ -140,7 +146,7 @@ exports.getComplaintDetails = function(req,res) {
 	else {
 		res.status(400);
 		res.send({
-			status: "error",
+			status: "Error",
 			msg   : "Missing Parameters"
 		});
 	}

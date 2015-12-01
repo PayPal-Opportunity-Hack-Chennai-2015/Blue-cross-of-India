@@ -23,7 +23,8 @@ angular.module('bluecross', ['ionic','bluecross.controllers', 'ngCordova.plugins
 
             .state('ambulance_not_assigned', {
                 url: '/ambulance_not_assigned',
-                templateUrl: 'views/ambulance_not_assigned.html'
+                templateUrl: 'views/ambulance_not_assigned.html',
+                controller: 'ambulanceController'
             })
 
             .state('about', {

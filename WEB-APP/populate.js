@@ -5,7 +5,7 @@ var _admin = {};
 _admin.body = {
 	username: "raghav",
 	email   : "raghav@piqube.com",
-	password: "supersaiyan",
+	password: "gobluecross",
 	phoneNumber: "9500521109",
 	firstName: "Raghav",
 	lastName: "G"

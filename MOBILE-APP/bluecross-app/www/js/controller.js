@@ -1,7 +1,7 @@
 /* global angular, document, window */
 'use strict';
 
-var URL = "http://localhost:3000";
+var URL = "http://192.168.112.97:3000";
 
 angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 
@@ -84,10 +84,11 @@ angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 	        navigator.geolocation.getCurrentPosition(showPosition,showError,
 	          {
 	            enableHighAccuracy : true,
-	            timeout : 10000, // 10s
-	            //maximumAge : 0
+	            timeout : 10000
 	          }
 	        );
+	    } else {
+	    	console.log("UNABLE TO GET GEOLOCATION");
 	    }
 
 	}

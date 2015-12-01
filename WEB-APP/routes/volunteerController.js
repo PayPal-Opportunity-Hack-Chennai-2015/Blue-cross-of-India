@@ -1,94 +1,75 @@
-var volunteer   = require("../models").Volunteer;
+/**
+ * @author Gnanendra
+ *
+ */
+
+var Volunteer   = require("../models").Volunteer;
 var _ 			= require('underscore');
 
 exports.createVolunteer = function(req,res){
 
 	var vol = {};
 	
-	if(!_.isEmpty(req.query)){
-		vol = req.query;
-	}
-	else {
-		vol = req.body;
-	}
+	(!_.isEmpty(req.query)) ? ( vol = req.query) : (vol = req.body);
 	
-	console.log(vol);
-	volunteer(vol).save(function(err,_vol){
+	Volunteer(vol).save(function(err,newVolunteer){
 		if(err) throw err;
 		res.status(200);
-		res.send(_vol);
+		res.send(newVolunteer);
 	});
-
 
 }
 
 exports.updateVolunteer = function(req,res){
-	console.log(req);
+
 	var vol = {};
 	
-	if(!_.isEmpty(req.query)){
-		vol = req.query;
-	}
-	else {
-		vol = req.body;
-	}
+	(!_.isEmpty(req.query)) ? ( vol = req.query) : (vol = req.body);
+
 	if( vol._id) {
-		volunteer.findById(vol._id, function(err, volunt) { 
+		Volunteer.findById(vol._id, function(err, volunt) { 
+
 			if(volunt) {
-				if(vol.firstname){
-					volunt.firstname=vol.firstname;
-				}
-				if(vol.lastName){
-					volunt.lastName=vol.lastName;
-				}
-				if(vol.email){
-					volunt.email=vol.email;
-				}
-				if(vol.phone){
-					volunt.phone=vol.phone;
-				}
-				if(vol.address){
-					volunt.address=vol.address;
-				}
-				if(vol.city){
-					volunt.city=vol.city;
-				}
-				if(vol.state){
-					volunt.state=vol.state;
-				}
-				if(vol.country){
-					volunt.country=vol.country;
-				}
-				if(vol.pincode){
-					volunt.pincode=vol.pincode;
-				}
-				volunt.save();
-				res.status(200);
-				res.send(volunt);
+
+					volunt.firstname	= vol.firstname;
+					volunt.lastName		= vol.lastName;
+					volunt.email		= vol.email;
+					volunt.phone		= vol.phone;
+					volunt.address		= vol.address;
+					volunt.city			= vol.city;
+					volunt.state		= vol.state;
+					volunt.country		= vol.country;
+					volunt.pincode		= vol.pincode;
+
+					volunt.save();
+					res.status(200);
+					res.send(volunt);
 				}
 				else {
 					res.status(401);
 					res.send({
-						status: "error",
-						msg   : "please  pass a proper id"
+						status: "Error",
+						msg   : "Volunteer not found"
 					});
 				}
-					});
+			});
 	}
 	else {
 		res.status(400);
 		res.send({
-			status: "error",
+			status: "Error",
 			msg   : "Missing Parameters"
 		});
 	}
 }
 
 exports.deleteVolunteer = function(req,res){
+
 	var _id = req.query._id || req.body._id || "";
-	console.log("nnnnnnnn"+_id)
+
 	if( _id) {
-		volunteer.remove({ '_id' :  _id }, function(err) { 
+
+		Volunteer.remove({ '_id' :  _id }, function(err) { 
 			if(!err) {
 				res.status(200);
 				res.send({
@@ -99,60 +80,54 @@ exports.deleteVolunteer = function(req,res){
 				else {
 					res.status(401);
 					res.send({
-						status: "error",
-						msg   : "please  pass a proper id"
+						status: "Error",
+						msg   : "Volunteer not found"
 					});
 				}
-					});
+		});
 	}
 	else {
 		res.status(400);
 		res.send({
-			status: "error",
+			status: "Error",
 			msg   : "Missing Parameters"
 		});
 	}
 }
 
 exports.getVolunteer = function(req,res){
+
 	var _id = req.query._id || req.body._id || "";
+
 	if( _id) {
-		volunteer.findById(_id, function(err, vol) { 
+
+		Volunteer.findById(_id, function(err, vol) { 
 			if(vol) {
 				res.status(200);
 				res.send(vol);
 				}
-				else {
-					res.status(401);
-					res.send({
-						status: "error",
-						msg   : "please  pass a proper id"
-					});
-				}
-					});
+			else {
+				res.status(401);
+				res.send({
+					status: "Error",
+					msg   : "Volunteer not found"
+				});
+			}
+		});
 	}
 	else {
 		res.status(400);
 		res.send({
-			status: "error",
+			status: "Error",
 			msg   : "Missing Parameters"
 		});
 	}
 }
 
 exports.getAllVolunteer = function(req,res){
-		volunteer.find({}, function(err, vol) { 
-			console.log(vol)
-			if(vol) {
-				res.status(200);
-				res.send(vol);
-			}
-			else {
-					res.status(401);
-					res.send({
-						status: "error",
-						msg   : "please pass a proper id"
-					});
-				}
-		});
+
+	Volunteer.find({}, function(err, vol) {
+		res.status(200);
+		res.send(vol);
+	});
 }
