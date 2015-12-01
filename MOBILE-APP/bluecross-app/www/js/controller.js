@@ -79,13 +79,12 @@ angular.module('bluecross.controllers', ['ngCordova.plugins.localStorage'])
 			console.log(error);
 		}
 		// Get the geo-location
-		if (!_.isEmpty(navigator.geolocation))
+		if (navigator.geolocation)
 	    {
 	        navigator.geolocation.getCurrentPosition(showPosition,showError,
 	          {
 	            enableHighAccuracy : true,
-	            timeout : 10000, // 10s
-	            //maximumAge : 0
+	            timeout : 10000
 	          }
 	        );
 	    } else {

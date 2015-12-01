@@ -55,9 +55,6 @@ module.exports = function(express, app) {
 	// ========== COMPLAINT ROUTER =================
 	// =============================================
 
-
-	indexRouter.get('/ping', function(req,res) {
-		res.send({ 
 	var caseRouter = express.Router();
 	caseRouter.post('/create', upload.single('pic'), complaint.createComplaint);
 	caseRouter.get('/recent', complaint.getRecentComplaints);
